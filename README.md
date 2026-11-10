@@ -8,7 +8,12 @@ Google Sheet that doubles as your application tracker.
 Your copy is yours. Your profile and passwords stay in your own Claude chat, your own computer, or
 your own private GitHub repository.
 
-**Build your profile first (2 minutes):** https://claude.ai/artifact/JsVz8ZxENeRrujLM47bYhx
+**Build your profile first (2 minutes):** https://buildingbrian.github.io/mba-internship-radar/
+
+**Get it (the first two need no account):**
+- [Download the Claude skill (zip)](https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip) and upload it in the Claude app.
+- [Download the whole folder (zip)](https://github.com/BuildingBrian/mba-internship-radar/archive/refs/heads/main.zip) and open it in Claude Code.
+- [Use this template](https://github.com/BuildingBrian/mba-internship-radar/generate) to get your own private copy on GitHub that runs daily.
 
 ## What a morning alert looks like
 ```
@@ -40,7 +45,7 @@ The number is a fit score from 0 to 100. ⚠ marks a stated deadline, "no visa s
 Many people do both: set it up and customize it in Claude Code, then run it daily on GitHub.
 
 ### Claude app
-Download `internship-radar-skill.zip` from this repo's **Releases**. In Claude: Settings →
+Download [`internship-radar-skill.zip`](https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip) (also under this repo's **Releases**). In Claude: Settings →
 Capabilities → turn on code execution → Skills → Upload skill → choose the zip. Start a new chat:
 **"Set up my internship radar"**, then paste your profile from the guide page.
 

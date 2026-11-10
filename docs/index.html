@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Free daily radar for MBA internships: about 250 company job boards plus your LinkedIn, Handshake and CMG alerts, by email, iMessage or a Google Sheet.">
+<meta property="og:title" content="Internship Radar">
+<meta property="og:description" content="Free daily radar for MBA internships: about 250 company job boards plus your LinkedIn, Handshake and CMG alerts, by email, iMessage or a Google Sheet.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildingbrian.github.io/mba-internship-radar/">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Internship Radar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column of sections; the builder is a two-pane tool (choices left, live profile right) that stacks on phones. */
+:root{
+  --bg:#f5f7f4; --surface:#ffffff; --ink:#15211c; --muted:#56665e; --line:#d6ded9;
+  --accent:#0d7268; --accent-ink:#ffffff; --accent-soft:#e0efeb; --ping:#b4470f; --ping-soft:#fbe9dd;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1412; --surface:#141e1b; --ink:#e4ede8; --muted:#9aaea5; --line:#26342f;
+  --accent:#3cc9b5; --accent-ink:#06201c; --accent-soft:#123029; --ping:#f39a5b; --ping-soft:#3a2214; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1412; --surface:#141e1b; --ink:#e4ede8; --muted:#9aaea5; --line:#26342f;
+  --accent:#3cc9b5; --accent-ink:#06201c; --accent-soft:#123029; --ping:#f39a5b; --ping-soft:#3a2214; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--body)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:grid;gap:44px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2.2rem,5vw,3.3rem);letter-spacing:-.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.02rem;font-family:var(--body);font-weight:600}
+p{margin:0}
+.lede{font-size:1.08rem;color:var(--muted);max-width:60ch}
+.eyebrow{font:500 .74rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.scope{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--accent);position:relative;overflow:hidden;flex:none}
+.scope::before{content:"";position:absolute;inset:0;background:conic-gradient(from 0deg,transparent 0 300deg,var(--accent) 360deg);opacity:.55;animation:sweep 3.2s linear infinite}
+.scope::after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:var(--ping);top:8px;left:18px}
+@keyframes sweep{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.scope::before{animation:none}}
+.hero-copy{display:grid;gap:14px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.fact{font:500 .8rem var(--mono);padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface)}
+.digest{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font:400 .8rem/1.55 var(--mono);box-shadow:0 1px 0 var(--line);min-width:0}
+.digest .tag{font:500 .68rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.digest b{font-weight:500}
+.digest .hd{font-weight:500}
+.digest .sc{color:var(--accent);font-weight:500}
+.digest .warn{color:var(--ping)}
+.digest .u{color:var(--muted);overflow-wrap:anywhere}
+.digest .row{margin-top:8px}
+section{display:grid;gap:16px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+/* builder */
+.builder{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:22px;min-width:0}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+legend{font-weight:600;padding:0;margin-bottom:2px}
+.hint{font-size:.84rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;font-size:.86rem;background:var(--bg);cursor:pointer;user-select:none}
+.chip span small{font:500 .7rem var(--mono);color:var(--muted)}
+.chip input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip input:checked + span small{color:var(--accent-ink);opacity:.8}
+.chip input:focus-visible + span{outline:2px solid var(--ping);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label.field{display:grid;gap:5px;font-size:.84rem;color:var(--muted)}
+input[type=text],select,textarea{font:400 .92rem var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:76px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--ping);outline-offset:1px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;width:max-content;max-width:100%}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;margin:0}
+.seg span{display:block;padding:6px 14px;font-size:.88rem;cursor:pointer}
+.seg input:checked + span{background:var(--accent-soft);color:var(--ink);font-weight:600}
+.seg input:focus-visible + span{outline:2px solid var(--ping);outline-offset:-2px}
+.out{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:grid;gap:12px}
+.count{display:flex;gap:18px;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.count b{font:600 1.45rem var(--display);color:var(--ink);display:block;font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs button{font:500 .86rem var(--body);background:none;border:0;border-bottom:2px solid transparent;padding:8px 10px;color:var(--muted);cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+pre{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font:400 .76rem/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto}
+.btnrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button.primary{font:600 .9rem var(--body);background:var(--accent);color:var(--accent-ink);border:0;border-radius:9px;padding:9px 16px;cursor:pointer}
+button.ghost{font:500 .86rem var(--body);background:none;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 14px;cursor:pointer}
+.ok{font-size:.84rem;color:var(--accent)}
+.note{font-size:.84rem;color:var(--muted)}
+/* channels */
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}
+th{font:500 .7rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.pill{font:500 .74rem var(--mono);padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--ink);white-space:nowrap}
+.pill.warn{background:var(--ping-soft)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:8px;align-content:start;min-width:0}
+.step::before{counter-increment:s;content:"Step " counter(s);font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.step p,.step li{font-size:.9rem;color:var(--muted)}
+.step ol{margin:0;padding-left:18px;display:grid;gap:4px}
+code{font:400 .82em var(--mono);background:var(--accent-soft);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.col{display:grid;gap:6px;align-content:start}
+.col p{font-size:.9rem;color:var(--muted)}
+footer{font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;display:grid;gap:4px}
+@media (max-width:860px){.hero,.builder{grid-template-columns:minmax(0,1fr)}.out{position:static}.steps,.cols{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.grid2{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-copy">
+      <div class="brand"><span class="scope" aria-hidden="true"></span><span class="eyebrow">For MBA classmates · free</span></div>
+      <h1>Internship Radar</h1>
+      <p class="lede">Pick your industries, roles and cities. Each morning the radar checks about 250 company job boards plus your LinkedIn, Handshake and CMG alerts, and sends you only the new postings that fit: by email, iMessage, or into a Google Sheet that doubles as your tracker.</p>
+      <div class="facts"><span class="fact">13 industries</span><span class="fact">173 boards checked daily</span><span class="fact">+ LinkedIn, Handshake &amp; CMG alerts</span><span class="fact">your own private copy</span></div>
+    </div>
+    <div class="digest" aria-label="Example morning alert">
+      <span class="tag">Example morning alert</span>
+      <div class="hd">Internship Radar for Alex · Tue Nov 10</div>
+      <div class="u">3 new · 14 open matches · 36 boards checked</div>
+      <div class="row"><span class="sc">[95]</span> <b>NVIDIA:</b> Product Management MBA Intern, Laptop, Summer 2027<br><span class="u">Santa Clara · posted Oct 30</span></div>
+      <div class="row"><span class="sc">[85]</span> <b>Adobe:</b> 2027 MBA Intern, Corporate Strategy<br><span class="u">San Francisco · posted Oct 6</span> <span class="warn">⚠ deadline Nov 21</span></div>
+      <div class="row"><span class="sc">[65]</span> <b>Pinterest:</b> Strategy &amp; Operations Intern 2027<br><span class="u">San Francisco · posted Nov 6</span></div>
+    </div>
+  </header>
+
+  <section aria-labelledby="b-h">
+    <div class="sec-head">
+      <span class="eyebrow">Start here</span>
+      <h2 id="b-h">Build your profile</h2>
+      <p>Your choices stay in this browser. When you're done, copy the profile: paste the short version into Claude, or use the file for the GitHub setup.</p>
+    </div>
+    <div class="builder">
+      <form class="panel" id="f" autocomplete="off">
+        <div class="grid2">
+          <label class="field">Your first name (optional)<input type="text" id="name" placeholder="Alex"></label>
+          <label class="field">Program<input type="text" id="program" value="Berkeley Haas FTMBA 2028"></label>
+        </div>
+        <fieldset>
+          <legend>What are you looking for?</legend>
+          <div class="btnrow">
+            <div class="seg" role="radiogroup" aria-label="Internship or full-time">
+              <label><input type="radio" name="kind" id="k-int" value="internship" checked><span>Internship</span></label>
+              <label><input type="radio" name="kind" id="k-ft" value="full-time"><span>Full-time</span></label>
+            </div>
+            <label class="field" style="flex:1;min-width:160px"><span class="sr" hidden>Term</span><input type="text" id="term" value="Summer 2027" aria-label="Term"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Industries <span class="hint">· pick up to three</span></legend>
+          <div class="chips" id="industries"></div>
+          <p class="hint" id="ind-note"></p>
+        </fieldset>
+        <fieldset>
+          <legend>Roles</legend>
+          <p class="hint">Picking an industry suggests its usual MBA roles. Change them freely.</p>
+          <div class="chips" id="roles"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Cities</legend>
+          <div class="chips" id="locs"></div>
+        </fieldset>
+        <label class="field">Dream companies, one per line, with the website if you know it
+          <textarea id="dream" placeholder="Stripe, stripe.com&#10;Patagonia, patagonia.com"></textarea>
+        </label>
+        <fieldset>
+          <legend>Will you need visa sponsorship?</legend>
+          <p class="hint">Only used to flag postings that say they don't sponsor.</p>
+          <div class="seg" role="radiogroup" aria-label="Visa sponsorship">
+            <label><input type="radio" name="visa" id="v-no" value="no" checked><span>No</span></label>
+            <label><input type="radio" name="visa" id="v-yes" value="yes"><span>Yes</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Also watch</legend>
+          <p class="hint">Read through the alert emails these sites send you. Nothing signs in to them.</p>
+          <div class="chips" id="sources"></div>
+        </fieldset>
+        <fieldset>
+          <legend>How should the radar reach you?</legend>
+          <div class="chips" id="channels"></div>
+          <p class="hint">Most people pick Email + Google Sheets. iMessage needs a Mac that's on.</p>
+          <div class="grid2">
+            <label class="field">Days<select id="days"><option value="weekdays">Weekdays</option><option value="daily">Every day</option></select></label>
+            <label class="field">Time (Pacific)<select id="time"><option value="6">6 AM</option><option value="7" selected>7 AM</option><option value="8">8 AM</option><option value="9">9 AM</option><option value="10">10 AM</option><option value="12">12 PM</option><option value="16">4 PM</option></select></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="out">
+        <div class="panel">
+          <div class="count"><div><b id="n-auto">0</b>boards checked for you</div><div><b id="n-hand">0</b>to check by hand</div><div><b id="n-roles">0</b>roles</div></div>
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" id="t-claude" aria-selected="true" aria-controls="o-claude">For Claude</button>
+            <button type="button" role="tab" id="t-file" aria-selected="false" aria-controls="o-file">my-radar.json (GitHub)</button>
+          </div>
+          <div id="o-claude" role="tabpanel" aria-labelledby="t-claude">
+            <pre id="claude-text"></pre>
+          </div>
+          <div id="o-file" role="tabpanel" aria-labelledby="t-file" hidden>
+            <pre id="file-text"></pre>
+            <p class="note" id="cron-note"></p>
+          </div>
+          <div class="btnrow"><button type="button" class="primary" id="copy">Copy</button><span class="ok" id="copied" aria-live="polite"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-h">
+    <div class="sec-head">
+      <span class="eyebrow">About 15 minutes</span>
+      <h2 id="s-h">Set it up</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Get your copy</h3>
+        <p>Everything is on GitHub: <a href="https://github.com/BuildingBrian/mba-internship-radar">github.com/BuildingBrian/mba-internship-radar</a>.</p>
+        <ol>
+          <li><b>Claude app:</b> <a href="https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip">download <code>internship-radar-skill.zip</code></a>, then Settings → Capabilities → Skills → Upload skill.</li>
+          <li><b>Claude Code:</b> <a href="https://github.com/BuildingBrian/mba-internship-radar/archive/refs/heads/main.zip">download the folder</a>, unzip it, open it in Claude Code, say "Set up my internship radar".</li>
+          <li><b>Daily on GitHub:</b> click <a href="https://github.com/BuildingBrian/mba-internship-radar/generate">Use this template</a>, make it private, and add your <code>my-radar.json</code>.</li>
+        </ol>
+      </div>
+      <div class="step">
+        <h3>Paste your profile</h3>
+        <p>In Claude, say <b>"Set up my internship radar"</b> and paste the "For Claude" text above. Claude builds your company list and runs your first scan in about 30 seconds.</p>
+        <p>On GitHub, paste the "my-radar.json" tab as a new file instead.</p>
+      </div>
+      <div class="step">
+        <h3>Turn on alerts</h3>
+        <p>Pick a channel below. Passwords go into GitHub Secrets or a <code>radar.env</code> file on your Mac, never into a chat. Then run <code>test-alert</code> to see one arrive. The repo's ALERTS.md and SOURCES.md walk through each one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="c-h">
+    <div class="sec-head">
+      <span class="eyebrow">Alerts</span>
+      <h2 id="c-h">How you can hear about new postings</h2>
+      <p>Plain SMS isn't offered: US carriers now require business registration for automated texts. For a text-style alert, use iMessage or WhatsApp.</p>
+    </div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Channel</th><th>Feels like</th><th>Setup</th><th>Runs from</th></tr></thead>
+        <tbody>
+          <tr><td><b>Email</b></td><td>A short morning email</td><td><span class="pill">5 min</span> Gmail app password</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>iMessage</b></td><td>A text in Messages</td><td><span class="pill">2 min</span> your number</td><td>Mac only, Mac on</td></tr>
+          <tr><td><b>Google Sheets</b></td><td>Each new match lands as a row with a Status menu: your tracker</td><td><span class="pill">5 min</span> paste a script into your sheet</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>WhatsApp</b></td><td>A WhatsApp message</td><td><span class="pill warn">5 min</span> unofficial free service (CallMeBot)</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>Slack or Discord</b></td><td>A post in your own channel</td><td><span class="pill">3 min</span> incoming webhook</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>Phone push</b></td><td>A notification from the free ntfy app</td><td><span class="pill">2 min</span> no account</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>Just in Claude</b></td><td>You ask "run my radar"</td><td><span class="pill">none</span></td><td>Claude</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="w-h">
+    <div class="sec-head">
+      <span class="eyebrow">Know the limits</span>
+      <h2 id="w-h">What it covers</h2>
+    </div>
+    <div class="cols">
+      <div class="col"><h3>Job boards</h3><p>173 company boards checked daily: tech, AI, robotics, defense, aerospace, fintech, climate and media, plus the big healthcare and consumer companies on Workday or Greenhouse. Add any company in one line.</p></div>
+      <div class="col"><h3>LinkedIn, Handshake, CMG</h3><p>Through the alert emails they already send you, the cmg tool's copy of CMG, or a paste into Claude. Nothing signs in to them, which keeps your accounts safe.</p></div>
+      <div class="col"><h3>Check by hand</h3><p>Most banks, McKinsey, BCG and Bain, and Google, Microsoft, Apple and Meta post on their own sites. The radar lists them every Monday. CMG stays your main source for on-campus recruiting.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Your profile and alert passwords stay with you: your Claude chat, your computer, or your private GitHub repo.</span>
+    <span>Code and guides: <a href="https://github.com/BuildingBrian/mba-internship-radar">github.com/BuildingBrian/mba-internship-radar</a> (MIT license: copy it, change it, share it).</span>
+    <span>Built by Brian Arévalo, Haas FTMBA '28. Questions and ideas go in the group chat.</span>
+  </footer>
+</div>
+<script>
+const DATA = {"roles":{"product management":["product manag","product owner","\\bpm\\b","\\bapm\\b","product strateg","product lead"],"product marketing":["product marketing","\\bpmm\\b","go-to-market","\\bgtm\\b"],"strategy":["strateg","corporate development","corp dev","bizops","business operations","chief of staff","strategic planning"],"operations":["operations","supply chain","logistics","program manag","project manag","procurement","sourcing"],"finance":["financ","fp&a","treasury","corporate development","investment"],"marketing":["marketing","brand","growth","consumer insights","communications"],"brand management":["brand","marketing","associate brand manager"],"consulting":["consult","summer associate","strateg","advisory"],"investment banking":["investment bank","summer associate","\\bibd\\b","m&a","capital markets","coverage"],"investing":["invest","private equity","venture","asset management","portfolio","equity research","credit"],"venture capital":["venture","investment","investing"],"business development":["business development","biz ?dev","partnership","alliances"],"sales & partnerships":["sales","account","partnership","go-to-market","\\bgtm\\b","commercial"],"data & analytics":["analytics","\\bdata\\b","insights","business intelligence"],"general management":["general management","leadership development","rotational","\\bmba\\b"],"people & hr":["people","talent","human resources","\\bhr\\b","organizational"],"deployment & solutions":["forward deployed","deployment","solutions","implementation","customer success"],"policy & government":["policy","government","public sector","regulatory"],"real estate":["real estate","development","acquisitions"]},"industries":{"tech":{"label":"Big tech & growth tech","roles":["product management","strategy","operations","product marketing"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"Google, Microsoft, Apple and Meta post on their own sites; they are listed to check by hand.","companies":[{"name":"Uber","ats":"smartrecruiters","token":"Uber"},{"name":"Lyft","ats":"greenhouse","token":"lyft"},{"name":"Pinterest","ats":"greenhouse","token":"pinterest"},{"name":"Dropbox","ats":"greenhouse","token":"dropbox"},{"name":"Figma","ats":"greenhouse","token":"figma"},{"name":"Notion","ats":"ashby","token":"notion"},{"name":"Snowflake","ats":"ashby","token":"snowflake"},{"name":"Okta","ats":"greenhouse","token":"okta"},{"name":"Samsara","ats":"greenhouse","token":"samsara"},{"name":"Asana","ats":"greenhouse","token":"asana"},{"name":"Workday","ats":"workday","tenant":"workday","pod":"wd5","site":"Workday"},{"name":"Twilio","ats":"greenhouse","token":"twilio"},{"name":"LinkedIn","ats":"lever","token":"linkedin"},{"name":"Amazon","ats":"amazon","queries":["MBA intern","MBA internship","MBA leadership development","Pathways MBA"]},{"name":"NVIDIA","ats":"workday","tenant":"nvidia","pod":"wd5","site":"NVIDIAExternalCareerSite"},{"name":"Salesforce","ats":"workday","tenant":"salesforce","pod":"wd12","site":"External_Career_Site"},{"name":"Adobe","ats":"workday","tenant":"adobe","pod":"wd5","site":"external_experienced"},{"name":"Stripe","ats":"greenhouse","token":"stripe"},{"name":"Airbnb","ats":"greenhouse","token":"airbnb"},{"name":"ServiceNow","ats":"smartrecruiters","token":"ServiceNow","queries":["intern","MBA","Summer 2027"]},{"name":"CrowdStrike","ats":"workday","tenant":"crowdstrike","pod":"wd5","site":"crowdstrikecareers"},{"name":"Instacart","ats":"greenhouse","token":"instacart"},{"name":"Visa","ats":"workday","tenant":"visa","pod":"wd5","site":"Visa"},{"name":"Google","ats":"manual","url":"https://google.com/careers"},{"name":"Microsoft","ats":"manual","url":"https://microsoft.com/careers"},{"name":"Apple","ats":"manual","url":"https://apple.com/careers"},{"name":"Meta","ats":"manual","url":"https://meta.com"},{"name":"Intuit","ats":"manual","url":"https://intuit.com/careers"},{"name":"DoorDash","ats":"manual","url":"https://doordash.com"},{"name":"Atlassian","ats":"manual","url":"https://atlassian.com/careers"},{"name":"Rippling","ats":"manual","url":"https://rippling.com/careers"},{"name":"HubSpot","ats":"manual","url":"https://hubspot.com/careers"},{"name":"Autodesk","ats":"manual","url":"https://jobs.autodesk.com"},{"name":"Cisco","ats":"manual","url":"https://careers.cisco.com"}]},"ai":{"label":"AI & frontier tech","roles":["strategy","operations","product management","deployment & solutions","business development"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"AI labs rarely title a role \"MBA intern\"; the radar also catches strategy, operations and deployment roles.","companies":[{"name":"Anthropic","ats":"greenhouse","token":"anthropic"},{"name":"OpenAI","ats":"ashby","token":"openai"},{"name":"Scale AI","ats":"greenhouse","token":"scaleai"},{"name":"Databricks","ats":"greenhouse","token":"databricks"},{"name":"xAI","ats":"greenhouse","token":"xai"},{"name":"Perplexity","ats":"ashby","token":"perplexity"},{"name":"Anysphere (Cursor)","ats":"ashby","token":"cursor"},{"name":"Cohere","ats":"ashby","token":"cohere"},{"name":"Glean","ats":"greenhouse","token":"gleanwork"},{"name":"Harvey","ats":"ashby","token":"harvey"},{"name":"Sierra","ats":"ashby","token":"sierra"},{"name":"CoreWeave","ats":"greenhouse","token":"coreweave"},{"name":"Mistral AI","ats":"ashby","token":"mistral.ai"}]},"robotics":{"label":"Robotics, autonomy & hard tech","roles":["strategy","operations","product management","business development","deployment & solutions"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"Many robotics startups have no internship program; use the radar for the ones that post and reach out to the rest.","companies":[{"name":"1X Technologies","ats":"ashby","token":"1x"},{"name":"Generalist AI","ats":"ashby","token":"generalist"},{"name":"Saildrone","ats":"greenhouse","token":"saildroneinc"},{"name":"Ambi Robotics","ats":"lever","token":"ambirobotics"},{"name":"The Bot Company","ats":"ashby","token":"thebotcompany"},{"name":"Nimble Robotics","ats":"greenhouse","token":"nimblerobotics"},{"name":"World Labs","ats":"ashby","token":"worldlabs"},{"name":"OSARO","ats":"lever","token":"osaro"},{"name":"Bedrock Robotics","ats":"ashby","token":"bedrock-robotics"},{"name":"Bright Machines","ats":"lever","token":"brightmachines"},{"name":"Applied Intuition","ats":"ashby","token":"applied"},{"name":"Sunday Robotics","ats":"ashby","token":"sunday"},{"name":"Dyna Robotics","ats":"ashby","token":"dyna-robotics"},{"name":"Mind Robotics","ats":"ashby","token":"mindrobotics"},{"name":"Dexmate","ats":"ashby","token":"dexmate"},{"name":"Toyota Research Institute","ats":"lever","token":"tri"},{"name":"Collaborative Robotics (Cobot)","ats":"ashby","token":"cobot"},{"name":"Matic Robots","ats":"ashby","token":"maticrobots"},{"name":"Kodiak","ats":"greenhouse","token":"kodiak"},{"name":"Gatik","ats":"greenhouse","token":"gatikaiinc"},{"name":"Simbe Robotics","ats":"lever","token":"SimbeRobotics"},{"name":"Mashgin","ats":"lever","token":"mashgin"},{"name":"Figure AI","ats":"greenhouse","token":"figureai"},{"name":"Physical Intelligence","ats":"ashby","token":"physicalintelligence"},{"name":"Zipline","ats":"greenhouse","token":"flyzipline"},{"name":"Boston Dynamics","ats":"workday","tenant":"bostondynamics","pod":"wd1","site":"Boston_Dynamics"},{"name":"Waymo","ats":"greenhouse","token":"waymo"},{"name":"Agility Robotics","ats":"greenhouse","token":"agilityrobotics"},{"name":"Apptronik","ats":"greenhouse","token":"apptronik"},{"name":"Gecko Robotics","ats":"ashby","token":"gecko-robotics"},{"name":"Nuro","ats":"greenhouse","token":"nuro"},{"name":"Dexterity","ats":"lever","token":"dexterity"},{"name":"Symbotic","ats":"workday","tenant":"symbotic","pod":"wd504","site":"Symbotic"},{"name":"Serve Robotics","ats":"ashby","token":"serverobotics"},{"name":"Zoox","ats":"lever","token":"zoox"},{"name":"Skild AI","ats":"greenhouse","token":"skildai-careers"},{"name":"Intrinsic","ats":"greenhouse","token":"intrinsicrobotics"}]},"defense":{"label":"Defense & dual-use","roles":["strategy","operations","business development","product management","deployment & solutions"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"Some roles require U.S. citizenship or a clearance; the digest flags them.","companies":[{"name":"Anduril","ats":"greenhouse","token":"andurilindustries"},{"name":"Palantir","ats":"lever","token":"palantir"},{"name":"Shield AI","ats":"lever","token":"shieldai"},{"name":"Voyager Technologies","ats":"greenhouse","token":"voyagertechnologiesinc"},{"name":"Skydio","ats":"ashby","token":"skydio"},{"name":"Saronic","ats":"ashby","token":"saronic"},{"name":"Epirus","ats":"greenhouse","token":"epirus"},{"name":"Hadrian","ats":"ashby","token":"hadrian-automation"},{"name":"Second Front Systems","ats":"ashby","token":"Second-Front-Systems"},{"name":"True Anomaly","ats":"greenhouse","token":"trueanomalyinc"},{"name":"Ursa Major","ats":"greenhouse","token":"ursamajor"},{"name":"Vannevar Labs","ats":"greenhouse","token":"vannevarlabs"},{"name":"Chaos Industries","ats":"greenhouse","token":"chaosindustries"},{"name":"Istari Digital","ats":"lever","token":"istaridigital.ai"},{"name":"Hermeus","ats":"lever","token":"hermeus"},{"name":"Booz Allen Hamilton","ats":"workday","tenant":"bah","pod":"wd1","site":"BAH_Jobs"},{"name":"Leidos","ats":"workday","tenant":"leidos","pod":"wd5","site":"External"},{"name":"Northrop Grumman","ats":"workday","tenant":"ngc","pod":"wd1","site":"Northrop_Grumman_External_Site","queries":["MBA","intern business","intern program management","intern strategy"]},{"name":"Boeing","ats":"workday","tenant":"boeing","pod":"wd1","site":"EXTERNAL_CAREERS","queries":["MBA","internship business","internship program management","internship strategy"]},{"name":"RTX","ats":"workday","tenant":"globalhr","pod":"wd5","site":"REC_RTX_Ext_Gateway","queries":["MBA","intern business development","intern program management","leadership development program"]},{"name":"GDIT (General Dynamics)","ats":"workday","tenant":"gdit","pod":"wd5","site":"External_Career_Site","queries":["MBA","intern business","intern program management"]}]},"aerospace":{"label":"Aviation & space","roles":["strategy","operations","business development","finance","product management"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"","companies":[{"name":"SpaceX","ats":"greenhouse","token":"spacex"},{"name":"Relativity Space","ats":"greenhouse","token":"relativity"},{"name":"Rocket Lab","ats":"greenhouse","token":"rocketlab"},{"name":"Planet","ats":"greenhouse","token":"planetlabs"},{"name":"Varda Space","ats":"greenhouse","token":"vardaspace"},{"name":"Pyka","ats":"lever","token":"pyka"},{"name":"Beta Technologies","ats":"greenhouse","token":"betatechnologiesinc"},{"name":"Archer Aviation","ats":"greenhouse","token":"archer56"},{"name":"Reliable Robotics","ats":"ashby","token":"reliable-robotics"},{"name":"Merlin Labs","ats":"lever","token":"merlinlabs"},{"name":"Boeing","ats":"workday","tenant":"boeing","pod":"wd1","site":"EXTERNAL_CAREERS","queries":["MBA","internship business","internship program management","internship strategy"]},{"name":"Joby Aviation","ats":"manual","url":"https://jobyaviation.com/careers"},{"name":"Blue Origin","ats":"manual","url":"https://www.blueorigin.com/careers"}]},"consulting":{"label":"Consulting","roles":["consulting","strategy"],"avoid":["engineer","engineering","software","developer","technician","scientist","phd","recruiter","legal","counsel","nurse","clinical","pharmacist","store","retail associate","warehouse"],"note":"McKinsey, BCG, Bain and most consulting firms take MBA applications on their own sites with fixed fall deadlines; they are listed to check by hand, and CMG is the main source.","companies":[{"name":"Accenture","ats":"workday","tenant":"accenture","pod":"wd103","site":"AccentureCareers"},{"name":"Oliver Wyman","ats":"lever","token":"oliverwyman"},{"name":"Roland Berger","ats":"smartrecruiters","token":"RolandBerger"},{"name":"PwC Strategy&","ats":"workday","tenant":"pwc","pod":"wd3","site":"US_Entry_Level_Careers","queries":["strategy intern","MBA","senior associate summer"]},{"name":"Guidehouse","ats":"workday","tenant":"guidehouse","pod":"wd1","site":"External","queries":["intern","MBA"]},{"name":"Booz Allen Hamilton","ats":"workday","tenant":"bah","pod":"wd1","site":"BAH_Jobs"},{"name":"McKinsey & Company","ats":"manual","url":"https://jobs.mckinsey.com"},{"name":"Boston Consulting Group","ats":"manual","url":"https://careers.bcg.com"},{"name":"Bain & Company","ats":"manual","url":"https://careers.bain.com"},{"name":"Deloitte","ats":"manual","url":"https://www2.deloitte.com/us/en/careers/students.html"},{"name":"EY-Parthenon","ats":"manual","url":"https://ey.com/careers"},{"name":"Kearney","ats":"manual","url":"https://www.kearney.com/careers"},{"name":"L.E.K. Consulting","ats":"manual","url":"https://lek.com/careers"},{"name":"ZS Associates","ats":"manual","url":"https://zs.com/careers"},{"name":"Alvarez & Marsal","ats":"manual","url":"https://alvarezandmarsal.com"}]},"finance":{"label":"Banking, investing & asset management","roles":["investment banking","investing","finance"],"avoid":["engineer","software","developer","technician","scientist","phd","recruiter","legal","counsel"],"note":"Most banks and investment firms post on their own sites (and through CMG), so the radar catches only a few; the rest are listed to check by hand.","companies":[{"name":"Citi","ats":"workday","tenant":"citi","pod":"wd5","site":"2"},{"name":"Moelis","ats":"workday","tenant":"moelis","pod":"wd1","site":"Experienced-Hires"},{"name":"Apollo","ats":"workday","tenant":"athene","pod":"wd5","site":"Apollo_Careers"},{"name":"TPG","ats":"greenhouse","token":"tpgcareers"},{"name":"Bain Capital","ats":"workday","tenant":"baincapital","pod":"wd1","site":"External_Public"},{"name":"Goldman Sachs","ats":"manual","url":"https://goldmansachs.com/careers"},{"name":"Morgan Stanley","ats":"manual","url":"https://morganstanley.com/careers"},{"name":"J.P. Morgan","ats":"manual","url":"https://jpmorganchase.com/careers"},{"name":"Bank of America","ats":"manual","url":"https://bankofamerica.com/careers"},{"name":"Evercore","ats":"manual","url":"https://evercore.com/careers"},{"name":"Lazard","ats":"manual","url":"https://lazard.com/careers"},{"name":"Centerview Partners","ats":"manual","url":"https://centerviewpartners.com/careers"},{"name":"BlackRock","ats":"manual","url":"https://blackrock.com/careers"},{"name":"Blackstone","ats":"manual","url":"https://blackstone.com"},{"name":"KKR","ats":"manual","url":"https://kkr.com/careers"},{"name":"Carlyle","ats":"manual","url":"https://carlyle.com"},{"name":"Wells Fargo","ats":"manual","url":"https://wellsfargo.com/careers"},{"name":"Fidelity Investments","ats":"manual","url":"https://fidelity.com"}]},"fintech":{"label":"Fintech & payments","roles":["strategy","product management","operations","finance","business development"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"","companies":[{"name":"Block","ats":"greenhouse","token":"block"},{"name":"Plaid","ats":"ashby","token":"plaid"},{"name":"Ramp","ats":"ashby","token":"ramp"},{"name":"Brex","ats":"greenhouse","token":"brex"},{"name":"Chime","ats":"greenhouse","token":"chime"},{"name":"Robinhood","ats":"greenhouse","token":"robinhood"},{"name":"Coinbase","ats":"greenhouse","token":"coinbase"},{"name":"Affirm","ats":"greenhouse","token":"affirm"},{"name":"Mercury","ats":"greenhouse","token":"mercury"},{"name":"SoFi","ats":"greenhouse","token":"sofi"},{"name":"Mastercard","ats":"workday","tenant":"mastercard","pod":"wd1","site":"CorporateCareers"},{"name":"Carta","ats":"greenhouse","token":"carta"},{"name":"Stripe","ats":"greenhouse","token":"stripe"},{"name":"Tereina","ats":"ashby","token":"Tereina"},{"name":"Visa","ats":"workday","tenant":"visa","pod":"wd5","site":"Visa"},{"name":"PayPal","ats":"manual","url":"https://paypal.com"},{"name":"American Express","ats":"manual","url":"https://americanexpress.com/careers"}]},"consumer":{"label":"Consumer, CPG & retail","roles":["brand management","marketing","strategy","finance","operations"],"avoid":["engineer","engineering","software","developer","technician","scientist","phd","recruiter","legal","counsel","nurse","clinical","pharmacist","store","retail associate","warehouse"],"note":"Several big CPG companies (P&G, PepsiCo, Mars) post on their own sites; they are listed to check by hand.","companies":[{"name":"General Mills","ats":"workday","tenant":"genmills","pod":"wd1","site":"GMI_External_Careers"},{"name":"Nike","ats":"workday","tenant":"nike","pod":"wd1","site":"nke2"},{"name":"Gap Inc.","ats":"smartrecruiters","token":"GapInc"},{"name":"L'Oréal","ats":"smartrecruiters","token":"LOrAl"},{"name":"Unilever","ats":"workday","tenant":"unilever","pod":"wd3","site":"Unilever_Experienced_Professionals"},{"name":"Target","ats":"workday","tenant":"target","pod":"wd5","site":"targetcareers"},{"name":"Kimberly-Clark","ats":"smartrecruiters","token":"KimberlyClark"},{"name":"The Coca-Cola Company","ats":"workday","tenant":"coke","pod":"wd1","site":"coca-cola-careers"},{"name":"Instacart","ats":"greenhouse","token":"instacart"},{"name":"Procter & Gamble","ats":"manual","url":"https://pg.com/careers"},{"name":"Clorox","ats":"manual","url":"https://thecloroxcompany.com/careers"},{"name":"PepsiCo","ats":"manual","url":"https://pepsico.com/careers"},{"name":"Levi Strauss & Co.","ats":"manual","url":"https://levistrauss.com"},{"name":"The Estée Lauder Companies","ats":"manual","url":"https://elcompanies.com/careers"},{"name":"Mars","ats":"manual","url":"https://mars.com/careers"},{"name":"Kraft Heinz","ats":"manual","url":"https://careers.kraftheinzcompany.com"},{"name":"Walmart","ats":"manual","url":"https://walmart.com/careers"},{"name":"Sephora","ats":"manual","url":"https://sephora.com/careers"},{"name":"lululemon","ats":"manual","url":"https://careers.lululemon.com"},{"name":"Starbucks","ats":"manual","url":"https://starbucks.com/careers"},{"name":"Colgate-Palmolive","ats":"manual","url":"https://colgatepalmolive.com"},{"name":"Mondelez International","ats":"manual","url":"https://mondelezinternational.com/careers"}]},"healthcare":{"label":"Healthcare, biotech & medtech","roles":["strategy","marketing","business development","finance","operations","product management"],"avoid":["engineer","engineering","software","developer","technician","scientist","phd","recruiter","legal","counsel","nurse","clinical","pharmacist","store","retail associate","warehouse"],"note":"","companies":[{"name":"Amgen","ats":"workday","tenant":"amgen","pod":"wd1","site":"Careers"},{"name":"Gilead Sciences","ats":"workday","tenant":"gilead","pod":"wd1","site":"gileadcareers"},{"name":"Stryker","ats":"workday","tenant":"stryker","pod":"wd1","site":"StrykerCareers"},{"name":"Intuitive","ats":"smartrecruiters","token":"Intuitive"},{"name":"Abbott","ats":"workday","tenant":"abbott","pod":"wd5","site":"abbottcareers"},{"name":"Illumina","ats":"workday","tenant":"illumina","pod":"wd1","site":"illumina-careers"},{"name":"Verily","ats":"workday","tenant":"verily","pod":"wd1","site":"Verily_Careers"},{"name":"Oscar Health","ats":"greenhouse","token":"oscar"},{"name":"Edwards Lifesciences","ats":"workday","tenant":"edwards","pod":"wd5","site":"EdwardsCareers"},{"name":"Genentech","ats":"manual","url":"https://gene.com/careers"},{"name":"Medtronic","ats":"manual","url":"https://medtronic.com/careers"},{"name":"Johnson & Johnson","ats":"manual","url":"https://jnj.com/careers"},{"name":"Kaiser Permanente","ats":"manual","url":"https://kaiserpermanente.org/careers"},{"name":"Tempus","ats":"manual","url":"https://tempus.com"},{"name":"Hims & Hers","ats":"manual","url":"https://hims.com"},{"name":"Thermo Fisher Scientific","ats":"manual","url":"https://thermofisher.com/careers"},{"name":"Boston Scientific","ats":"manual","url":"https://bostonscientific.com/careers"},{"name":"CVS Health","ats":"manual","url":"https://cvshealth.com/careers"}]},"climate":{"label":"Energy, climate & mobility","roles":["strategy","operations","business development","finance","product management"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"","companies":[{"name":"Lucid Motors","ats":"greenhouse","token":"lucidmotors"},{"name":"Commonwealth Fusion Systems","ats":"lever","token":"cfsenergy"},{"name":"Form Energy","ats":"ashby","token":"formenergy"},{"name":"Redwood Materials","ats":"greenhouse","token":"redwoodmaterials"},{"name":"Sunrun","ats":"workday","tenant":"sunrun","pod":"wd5","site":"Sunrun_Careers"},{"name":"Watershed","ats":"greenhouse","token":"watershed"},{"name":"Crusoe","ats":"ashby","token":"Crusoe"},{"name":"Fervo Energy","ats":"greenhouse","token":"fervoenergy"},{"name":"Electric Hydrogen","ats":"greenhouse","token":"eh2"},{"name":"Twelve","ats":"ashby","token":"twelve"},{"name":"Waymo","ats":"greenhouse","token":"waymo"},{"name":"Zipline","ats":"greenhouse","token":"flyzipline"},{"name":"Rivian","ats":"manual","url":"https://rivian.com/careers"},{"name":"Enphase Energy","ats":"manual","url":"https://enphase.com/careers"},{"name":"PG&E","ats":"manual","url":"https://pge.com/careers"},{"name":"NextEra Energy","ats":"manual","url":"https://nexteraenergy.com/careers"},{"name":"Coreshell","ats":"manual","url":"https://coreshell.com/careers"},{"name":"Tesla","ats":"manual","url":"https://www.tesla.com/careers"}]},"media":{"label":"Media, gaming & entertainment","roles":["strategy","product management","marketing","business development","finance"],"avoid":["engineer","engineering","software","hardware","firmware","scientist","phd","technician","developer","machine learning","data scientist","designer","recruiter","legal","counsel","accountant","tax","audit"],"note":"","companies":[{"name":"Spotify","ats":"lever","token":"spotify"},{"name":"Roblox","ats":"greenhouse","token":"roblox"},{"name":"Epic Games","ats":"greenhouse","token":"epicgames"},{"name":"Riot Games","ats":"greenhouse","token":"riotgames"},{"name":"Reddit","ats":"greenhouse","token":"reddit"},{"name":"Discord","ats":"greenhouse","token":"discord"},{"name":"Peloton","ats":"greenhouse","token":"peloton"},{"name":"Netflix","ats":"manual","url":"https://netflix.com/careers"},{"name":"The Walt Disney Company","ats":"manual","url":"https://thewaltdisneycompany.com"},{"name":"Electronic Arts","ats":"manual","url":"https://ea.com/careers"},{"name":"Warner Bros. Discovery","ats":"manual","url":"https://wbd.com/careers"},{"name":"NBCUniversal","ats":"manual","url":"https://nbcuniversal.com/careers"},{"name":"TikTok","ats":"manual","url":"https://lifeattiktok.com/careers"},{"name":"Snap","ats":"manual","url":"https://careers.snap.com"}]},"impact":{"label":"Social impact & public sector","roles":["strategy","operations","policy & government","finance","general management"],"avoid":["engineer","engineering","software","developer","technician","scientist","phd","recruiter","legal","counsel","nurse","clinical","pharmacist","store","retail associate","warehouse"],"note":"Foundations and nonprofits often hire through CMG or their own sites; check those too.","companies":[{"name":"Gates Foundation","ats":"workday","tenant":"gatesfoundation","pod":"wd1","site":"Gates"},{"name":"Code for America","ats":"greenhouse","token":"codeforamerica"},{"name":"Acumen","ats":"greenhouse","token":"acumen"},{"name":"RMI","ats":"workday","tenant":"rockymountain","pod":"wd1","site":"RMI"},{"name":"Teach For America","ats":"workday","tenant":"teachforamerica","pod":"wd1","site":"TFA_Careers"},{"name":"World Bank Group","ats":"manual","url":"https://worldbank.org/careers"},{"name":"Kiva","ats":"manual","url":"https://kiva.org/careers"},{"name":"The Bridgespan Group","ats":"manual","url":"https://bridgespan.org/careers"},{"name":"Clinton Health Access Initiative","ats":"manual","url":"https://clintonhealthaccess.org/jobs"},{"name":"Echoing Green","ats":"manual","url":"https://echoinggreen.org"}]}}};
+const IND = DATA.industries;
+const ROLE_KEYS = Object.keys(DATA.roles);
+const LOCS = ["San Francisco Bay Area","New York","Los Angeles","Seattle","Boston","Washington DC","Chicago","Austin","Denver","Atlanta","Dallas","Remote","Anywhere"];
+const CH = [["email","Email"],["imessage","iMessage"],["sheets","Google Sheets tracker"],["whatsapp","WhatsApp"],["slack","Slack"],["discord","Discord"],["push","Phone push"],["claude","Just in Claude"]];
+const SRC = [["linkedin","LinkedIn job alerts"],["handshake","Handshake job alerts"],["cmg","CMG emails"],["cmgtool","CMG via the cmg tool (Mac)"]];
+const KEY = "internship-radar-profile-v2";
+const $ = id => document.getElementById(id);
+const state = {industries: [], rolesOn: [], rolesOff: [], locs: ["San Francisco Bay Area", "Remote"], channels: ["email", "sheets"], sources: ["linkedin"]};
+try { Object.assign(state, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+state.channels = state.channels.filter(c => CH.some(x => x[0] === c));
+
+function chip(group, value, label, small, checked) {
+  const l = document.createElement("label"); l.className = "chip";
+  const i = document.createElement("input"); i.type = "checkbox"; i.value = value; i.id = group + "-" + value.replace(/[^a-z0-9]+/gi, "-"); i.checked = !!checked;
+  const s = document.createElement("span"); s.textContent = label;
+  if (small) { const m = document.createElement("small"); m.textContent = small; s.appendChild(m); }
+  l.append(i, s); return l;
+}
+const autoCount = k => IND[k].companies.filter(c => c.ats !== "manual").length;
+function render() {
+  const ind = $("industries"); ind.replaceChildren(...Object.keys(IND).map(k => chip("ind", k, IND[k].label, String(autoCount(k)), state.industries.includes(k))));
+  const roles = currentRoles();
+  $("roles").replaceChildren(...ROLE_KEYS.map(r => chip("role", r, r, "", roles.includes(r))));
+  $("locs").replaceChildren(...LOCS.map(l => chip("loc", l, l, "", state.locs.includes(l))));
+  $("channels").replaceChildren(...CH.map(([k, l]) => chip("ch", k, l, "", state.channels.includes(k))));
+  $("sources").replaceChildren(...SRC.map(([k, l]) => chip("src", k, l, "", state.sources.includes(k))));
+  update();
+}
+function suggested() { return [...new Set(state.industries.flatMap(k => IND[k].roles))]; }
+function currentRoles() {
+  const s = suggested().filter(r => !state.rolesOff.includes(r));
+  return ROLE_KEYS.filter(r => s.includes(r) || state.rolesOn.includes(r));
+}
+function checked(id) { return [...$(id).querySelectorAll("input:checked")].map(i => i.value); }
+function hourLabel(h) { h = +h; return h === 12 ? "12 PM" : h > 12 ? (h - 12) + " PM" : h + " AM"; }
+function dreamList() {
+  return $("dream").value.split("\n").map(x => x.trim()).filter(Boolean).map(line => {
+    const [name, site] = line.split(",").map(x => (x || "").trim());
+    return {name, site: (site || "").replace(/^https?:\/\//, "").replace(/\/.*$/, "")};
+  }).filter(d => d.name);
+}
+function build() {
+  const roles = currentRoles();
+  const words = roles.join(" ").toLowerCase();
+  let avoid = [...new Set(state.industries.flatMap(k => IND[k].avoid))];
+  if (words.includes("data")) avoid = avoid.filter(a => !a.startsWith("data"));
+  if (words.includes("people") || words.includes("hr")) avoid = avoid.filter(a => a !== "recruiter");
+  if (words.includes("deployment")) avoid = avoid.filter(a => a !== "engineer" && a !== "engineering");
+  const seen = new Set(), companies = [];
+  for (const k of state.industries) for (const c of IND[k].companies) {
+    const n = c.name.toLowerCase(); if (!seen.has(n)) { seen.add(n); companies.push({...c}); }
+  }
+  const dreams = dreamList();
+  for (const d of dreams) {
+    const hit = companies.find(c => c.name.toLowerCase() === d.name.toLowerCase());
+    if (hit) hit.dream = true;
+    else companies.push({name: d.name, ats: "manual", url: d.site ? "https://" + d.site : "", dream: true});
+  }
+  const anywhere = state.locs.includes("Anywhere");
+  const mailSrc = state.sources.filter(s => ["linkedin", "handshake", "cmg"].includes(s));
+  const chans = state.channels.filter(c => c !== "claude");
+  const days = $("days").value, h = $("time").value;
+  const when = `${days === "weekdays" ? "weekdays" : "every day"} at ${hourLabel(h)} Pacific`;
+  const prof = {
+    name: $("name").value.trim(), program: $("program").value.trim(),
+    looking_for: document.querySelector('input[name="kind"]:checked').value, term: $("term").value.trim(), degree: "MBA",
+    industries: state.industries, roles, avoid, locations: anywhere ? [] : state.locs,
+    needs_sponsorship: document.querySelector('input[name="visa"]:checked').value === "yes", min_score: 55,
+    alerts: {channels: chans, schedule: chans.length ? when : "ask in Claude", timezone: "America/Los_Angeles", send_when_quiet: false},
+    email_alerts: {enabled: mailSrc.length > 0, from: mailSrc.length ? mailSrc : ["linkedin", "handshake", "cmg"], days: 3, extra_senders: []},
+    cmg_tool: state.sources.includes("cmgtool"),
+    companies
+  };
+  const label = k => IND[k].label;
+  const chanLabel = state.channels.map(c => CH.find(x => x[0] === c)[1]);
+  const lines = ["Set up my internship radar."];
+  if (prof.name) lines.push(`- Name: ${prof.name}`);
+  lines.push(`- Looking for: ${prof.term} ${prof.looking_for}${prof.program ? " · " + prof.program : ""}`);
+  lines.push(`- Industries: ${state.industries.length ? state.industries.map(k => `${label(k)} (${k})`).join(", ") : "not chosen yet"}`);
+  lines.push(`- Roles: ${roles.length ? roles.join(", ") : "not chosen yet"}`);
+  lines.push(`- Dream companies: ${dreams.length ? dreams.map(d => d.site ? `${d.name} (${d.site})` : d.name).join(", ") : "none yet"}`);
+  lines.push(`- Cities: ${anywhere || !state.locs.length ? "anywhere" : state.locs.join(", ")}`);
+  lines.push(`- Visa sponsorship needed: ${prof.needs_sponsorship ? "yes" : "no"}`);
+  lines.push(`- Alerts: ${chanLabel.length ? chanLabel.join(" and ") : "none yet"}${chans.length ? ", " + when : ""}`);
+  lines.push(`- Also watch: ${state.sources.length ? state.sources.map(s => SRC.find(x => x[0] === s)[1]).join(", ") : "nothing else"}`);
+  const utc = (+h + 7) % 24;
+  const cron = `cron: "0 ${utc} * * ${days === "weekdays" ? "1-5" : "*"}"`;
+  return {prof, text: lines.join("\n"), cron, auto: companies.filter(c => c.ats !== "manual").length, hand: companies.filter(c => c.ats === "manual").length};
+}
+function update() {
+  const b = build();
+  $("claude-text").textContent = b.text;
+  $("file-text").textContent = JSON.stringify(b.prof, null, 1);
+  $("cron-note").textContent = `Schedule line for radar.yml: ${b.cron}. GitHub runs on UTC, so in winter it arrives an hour earlier.`;
+  $("n-auto").textContent = b.auto; $("n-hand").textContent = b.hand; $("n-roles").textContent = b.prof.roles.length;
+  const notes = state.industries.map(k => IND[k].note).filter(Boolean);
+  $("ind-note").textContent = notes.join(" ");
+  try { localStorage.setItem(KEY, JSON.stringify({...state, name: $("name").value, program: $("program").value, term: $("term").value, dream: $("dream").value, days: $("days").value, time: $("time").value})); } catch (e) {}
+}
+document.addEventListener("change", e => {
+  const t = e.target;
+  if (t.id.startsWith("ind-")) {
+    if (t.checked && state.industries.length >= 3) { t.checked = false; $("ind-note").textContent = "Three is the limit, so the morning list stays short. Uncheck one to swap."; return; }
+    state.industries = checked("industries");
+    render(); return;
+  }
+  if (t.id.startsWith("role-")) {
+    const r = t.value, sug = suggested().includes(r);
+    state.rolesOn = state.rolesOn.filter(x => x !== r); state.rolesOff = state.rolesOff.filter(x => x !== r);
+    if (t.checked && !sug) state.rolesOn.push(r);
+    if (!t.checked && sug) state.rolesOff.push(r);
+  }
+  if (t.id.startsWith("loc-")) {
+    if (t.value === "Anywhere" && t.checked) { state.locs = ["Anywhere"]; render(); return; }
+    state.locs = checked("locs").filter(l => l !== "Anywhere");
+    if (state.locs.length !== checked("locs").length) { render(); return; }
+  }
+  if (t.id.startsWith("src-")) { state.sources = checked("sources"); update(); return; }
+  if (t.id.startsWith("ch-")) {
+    if (t.value === "claude" && t.checked) { state.channels = ["claude"]; render(); return; }
+    state.channels = checked("channels").filter(c => c !== "claude");
+    if (state.channels.length !== checked("channels").length) { render(); return; }
+  }
+  update();
+});
+document.addEventListener("input", e => { if (["name", "program", "term", "dream"].includes(e.target.id)) update(); });
+$("f").addEventListener("submit", e => e.preventDefault());
+for (const [tab, panel] of [["t-claude", "o-claude"], ["t-file", "o-file"]]) {
+  $(tab).addEventListener("click", () => {
+    for (const [t2, p2] of [["t-claude", "o-claude"], ["t-file", "o-file"]]) { $(t2).setAttribute("aria-selected", String(t2 === tab)); $(p2).hidden = p2 !== panel; }
+    $("copied").textContent = "";
+  });
+}
+$("copy").addEventListener("click", async () => {
+  const pre = $("o-claude").hidden ? $("file-text") : $("claude-text");
+  try { await navigator.clipboard.writeText(pre.textContent); $("copied").textContent = "Copied. Paste it into Claude or GitHub."; }
+  catch (e) { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("copied").textContent = "Selected. Press Copy on your keyboard (⌘C or Ctrl+C)."; }
+});
+(function restore() {
+  for (const id of ["name", "program", "term", "dream", "days", "time"]) if (state[id]) $(id).value = state[id];
+  render();
+})();
+
+</script>
+</body>
+</html>

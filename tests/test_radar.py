@@ -34,7 +34,7 @@ See all jobs on LinkedIn: https://www.linkedin.com/comm/jobs/search-results/?key
 HANDSHAKE_HTML = """<html><body><table>
 <tr><td><a href="https://app.joinhandshake.com/stu/jobs/9876543?ref=email">MBA Summer Associate, Brand Management</a></td></tr>
 <tr><td><a href="https://app.joinhandshake.com/stu/jobs/9876543?ref=email">View job</a></td></tr>
-<tr><td><a href="https://mba-haas-berkeley.12twenty.com/jobPostings#/jobPostings/35006705625972/details">Product Management Intern</a></td></tr>
+<tr><td><a href="https://mba-haas-berkeley.12twenty.com/jobPostings#/jobPostings/10000000000001/details">Product Management Intern</a></td></tr>
 <tr><td><a href="https://example.com/unsubscribe">Unsubscribe</a></td></tr>
 </table></body></html>"""
 
@@ -51,7 +51,7 @@ class AlertEmails(unittest.TestCase):
         jobs = radar.parse_alert_html(HANDSHAKE_HTML, "handshake")
         self.assertEqual([j["title"] for j in jobs], ["MBA Summer Associate, Brand Management", "Product Management Intern"])
         self.assertEqual(jobs[0]["url"], "https://app.joinhandshake.com/jobs/9876543")
-        self.assertIn("35006705625972", jobs[1]["url"])
+        self.assertIn("10000000000001", jobs[1]["url"])
 
     def test_multipart_email(self):
         msg = email.message.EmailMessage(policy=email.policy.default)
