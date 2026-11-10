@@ -113,8 +113,8 @@ footer{font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);padd
     <div class="hero-copy">
       <div class="brand"><span class="scope" aria-hidden="true"></span><span class="eyebrow">For MBA classmates · free</span></div>
       <h1>Internship Radar</h1>
-      <p class="lede">Pick your industries, roles and cities. Each morning the radar checks about 250 company job boards plus your LinkedIn, Handshake and CMG alerts, and sends you only the new postings that fit: by email, iMessage, or into a Google Sheet that doubles as your tracker.</p>
-      <div class="facts"><span class="fact">13 industries</span><span class="fact">173 boards checked daily</span><span class="fact">+ LinkedIn, Handshake &amp; CMG alerts</span><span class="fact">your own private copy</span></div>
+      <p class="lede">Pick your industries, roles and cities. Each morning the radar checks about 165 company job boards plus your LinkedIn, Handshake and CMG alerts, and sends you only the new postings that fit: by email, iMessage, or into a Google Sheet that doubles as your tracker.</p>
+      <div class="facts"><span class="fact">13 industries</span><span class="fact">166 boards checked daily</span><span class="fact">+ LinkedIn, Handshake &amp; CMG alerts</span><span class="fact">your own private copy</span></div>
     </div>
     <div class="digest" aria-label="Example morning alert">
       <span class="tag">Example morning alert</span>
@@ -219,15 +219,15 @@ footer{font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);padd
         <h3>Get your copy</h3>
         <p>Everything is on GitHub: <a href="https://github.com/BuildingBrian/mba-internship-radar">github.com/BuildingBrian/mba-internship-radar</a>.</p>
         <ol>
-          <li><b>Claude app:</b> <a href="https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip">download <code>internship-radar-skill.zip</code></a>, then Settings → Capabilities → Skills → Upload skill.</li>
-          <li><b>Claude Code:</b> <a href="https://github.com/BuildingBrian/mba-internship-radar/archive/refs/heads/main.zip">download the folder</a>, unzip it, open it in Claude Code, say "Set up my internship radar".</li>
-          <li><b>Daily on GitHub:</b> click <a href="https://github.com/BuildingBrian/mba-internship-radar/generate">Use this template</a>, make it private, and add your <code>my-radar.json</code>.</li>
+          <li><b>Daily on GitHub (recommended):</b> click <a href="https://github.com/BuildingBrian/mba-internship-radar/generate">Use this template</a>, make it private, and add your <code>my-radar.json</code>. It scans every morning by itself, with nothing to install.</li>
+          <li><b>Claude Code:</b> <a href="https://github.com/BuildingBrian/mba-internship-radar/archive/refs/heads/main.zip">download the folder</a>, unzip it, open it in Claude Code on your computer, say "Set up my internship radar".</li>
+          <li><b>Claude app:</b> <a href="https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip">download <code>internship-radar-skill.zip</code></a>. Turn on Settings → Capabilities → Code execution and file creation, then go to Customize → Skills → + → Create skill → Upload a skill. It builds your profile; the scan itself runs on GitHub or in Claude Code.</li>
         </ol>
       </div>
       <div class="step">
         <h3>Paste your profile</h3>
-        <p>In Claude, say <b>"Set up my internship radar"</b> and paste the "For Claude" text above. Claude builds your company list and runs your first scan in about 30 seconds.</p>
-        <p>On GitHub, paste the "my-radar.json" tab as a new file instead.</p>
+        <p>On GitHub, paste the "my-radar.json" tab as a new file named <code>my-radar.json</code>, then open Actions → Internship Radar → Run workflow. Your first list arrives in about a minute.</p>
+        <p>In Claude Code, say <b>"Set up my internship radar"</b> and paste the "For Claude" text above. Claude builds your company list and runs your first scan in about 30 seconds. The Claude app can build your profile the same way, but its sandbox can't reach job boards to scan.</p>
       </div>
       <div class="step">
         <h3>Turn on alerts</h3>
@@ -252,7 +252,7 @@ footer{font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);padd
           <tr><td><b>WhatsApp</b></td><td>A WhatsApp message</td><td><span class="pill warn">5 min</span> unofficial free service (CallMeBot)</td><td>GitHub or Mac</td></tr>
           <tr><td><b>Slack or Discord</b></td><td>A post in your own channel</td><td><span class="pill">3 min</span> incoming webhook</td><td>GitHub or Mac</td></tr>
           <tr><td><b>Phone push</b></td><td>A notification from the free ntfy app</td><td><span class="pill">2 min</span> no account</td><td>GitHub or Mac</td></tr>
-          <tr><td><b>Just in Claude</b></td><td>You ask "run my radar"</td><td><span class="pill">none</span></td><td>Claude</td></tr>
+          <tr><td><b>Just in Claude</b></td><td>You ask "run my radar"</td><td><span class="pill">none</span></td><td>Claude Code</td></tr>
         </tbody>
       </table>
     </div>
@@ -264,9 +264,9 @@ footer{font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);padd
       <h2 id="w-h">What it covers</h2>
     </div>
     <div class="cols">
-      <div class="col"><h3>Job boards</h3><p>173 company boards checked daily: tech, AI, robotics, defense, aerospace, fintech, climate and media, plus the big healthcare and consumer companies on Workday or Greenhouse. Add any company in one line.</p></div>
+      <div class="col"><h3>Job boards</h3><p>166 company boards checked daily: tech, AI, robotics, defense, aerospace, fintech, climate and media, plus the big healthcare and consumer companies on Workday or Greenhouse. Add any company in one line.</p></div>
       <div class="col"><h3>LinkedIn, Handshake, CMG</h3><p>Through the alert emails they already send you, the cmg tool's copy of CMG, or a paste into Claude. Nothing signs in to them, which keeps your accounts safe.</p></div>
-      <div class="col"><h3>Check by hand</h3><p>Most banks, McKinsey, BCG and Bain, and Google, Microsoft, Apple and Meta post on their own sites. The radar lists them every Monday. CMG stays your main source for on-campus recruiting.</p></div>
+      <div class="col"><h3>Check by hand</h3><p>77 more companies. Most banks, McKinsey, BCG and Bain, and Google, Microsoft, Apple and Meta post on their own sites. The radar lists them every Monday. CMG stays your main source for on-campus recruiting.</p></div>
     </div>
   </section>
 

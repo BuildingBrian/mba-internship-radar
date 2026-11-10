@@ -19,7 +19,7 @@ shell = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=
 os.makedirs(os.path.join(P, 'preview'), exist_ok=True)
 open(os.path.join(P, 'preview', 'index.html'), 'w').write(shell + html + '</body></html>\n')
 # Standalone copy for GitHub Pages: a full document, so it opens for anyone with no Claude sign-in.
-DESC = 'Free daily radar for MBA internships: about 250 company job boards plus your LinkedIn, Handshake and CMG alerts, by email, iMessage or a Google Sheet.'
+DESC = 'Free daily radar for MBA internships: about 165 company job boards plus your LinkedIn, Handshake and CMG alerts, by email, iMessage or a Google Sheet.'
 BASE = ('<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}'
         'body{margin:0;padding:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>\n')
 page = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'

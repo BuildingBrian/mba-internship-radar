@@ -1,7 +1,7 @@
 # Internship Radar
 
 A free radar for your MBA internship search. Tell it your industries, roles, dream companies and
-cities. Each morning it checks about 250 company job boards, plus your LinkedIn, Handshake and CMG
+cities. Each morning it checks about 165 company job boards, plus your LinkedIn, Handshake and CMG
 alerts, and sends you only the new postings that fit: by email, iMessage, or straight into a
 Google Sheet that doubles as your application tracker.
 
@@ -10,10 +10,12 @@ your own private GitHub repository.
 
 **Build your profile first (2 minutes):** https://buildingbrian.github.io/mba-internship-radar/
 
-**Get it (the first two need no account):**
-- [Download the Claude skill (zip)](https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip) and upload it in the Claude app.
-- [Download the whole folder (zip)](https://github.com/BuildingBrian/mba-internship-radar/archive/refs/heads/main.zip) and open it in Claude Code.
-- [Use this template](https://github.com/BuildingBrian/mba-internship-radar/generate) to get your own private copy on GitHub that runs daily.
+**Get it:**
+- **Recommended:** [Use this template](https://github.com/BuildingBrian/mba-internship-radar/generate) for your own private copy on GitHub. It scans
+  every morning by itself, with nothing to install.
+- [Download the whole folder (zip)](https://github.com/BuildingBrian/mba-internship-radar/archive/refs/heads/main.zip) and open it in Claude Code on your computer.
+- [Download the Claude skill (zip)](https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip) for the Claude app. It builds your profile there;
+  the scan itself runs on GitHub or in Claude Code.
 
 ## What a morning alert looks like
 ```
@@ -34,26 +36,17 @@ The number is a fit score from 0 to 100. ⚠ marks a stated deadline, "no visa s
 
 ## Pick how you run it
 
-| | Claude app (web or desktop) | Claude Code | GitHub (daily, in the cloud) |
+| | GitHub (daily, in the cloud) | Claude Code (on your computer) | Claude app (chat) |
 |---|---|---|---|
-| You need | Paid Claude plan | Claude Code | Free GitHub account |
-| Setup | Upload the skill, chat | Open the folder, chat | Use this template, add your profile |
-| Daily alerts | Ask "run my radar" | Schedule it on your Mac | Automatic, laptop can be closed |
+| You need | Free GitHub account | Claude Code | Any Claude plan |
+| Setup | Use this template, add your profile | Open the folder, chat | Upload the skill, chat |
+| Runs the scan | Yes | Yes | No: its sandbox can't reach job boards |
+| Daily alerts | Automatic, laptop can be closed | Schedule it on your Mac | No |
 | iMessage | No | Yes | No |
-| Best for | Trying it out | Changing anything you like | Set it and forget it |
+| Best for | Set it and forget it | Changing anything you like | Building your profile with Claude's help |
 
-Many people do both: set it up and customize it in Claude Code, then run it daily on GitHub.
-
-### Claude app
-Download [`internship-radar-skill.zip`](https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip) (also under this repo's **Releases**). In Claude: Settings →
-Capabilities → turn on code execution → Skills → Upload skill → choose the zip. Start a new chat:
-**"Set up my internship radar"**, then paste your profile from the guide page.
-
-### Claude Code
-Download or clone this repo, open the folder in Claude Code, and say **"Set up my internship
-radar."** Claude reads `CLAUDE.md` and `SKILL.md`, builds your profile, runs your first scan, and can
-change anything: new alert channels, scoring, schedules, sources. To use it as a skill from any
-folder, put the repo at `~/.claude/skills/internship-radar`.
+Not sure? Use GitHub: build your profile on the guide page, paste it in, and you're done. Many
+people do both: set it up and customize it in Claude Code, then run it daily on GitHub.
 
 ### GitHub (daily)
 1. Click **Use this template → Create a new repository**, name it `internship-radar`, choose
@@ -65,6 +58,28 @@ folder, put the repo at `~/.claude/skills/internship-radar`.
 4. **Actions → Internship Radar → Run workflow.** The first digest arrives in about a minute, then
    every weekday at 7 AM Pacific. Change the time in `.github/workflows/radar.yml` (it is in UTC).
 
+Dream companies you typed on the guide page start as "check by hand". The first run looks up each
+one's job board and, when it finds one, scans it from then on.
+
+### Claude Code
+Claude Code runs on your own computer: in the terminal, or in the Code tab of the Claude desktop
+app. Download or clone this repo, open the folder in Claude Code, and say **"Set up my internship
+radar."** Claude reads `CLAUDE.md` and `SKILL.md`, builds your profile, runs your first scan, and can
+change anything: new alert channels, scoring, schedules, sources. To use it as a skill from any
+folder, put the repo at `~/.claude/skills/internship-radar`.
+
+### Claude app
+Use the Claude app to build your profile in a conversation. It can't run the scan: the app runs
+code in a sandbox that reaches only a short approved list of sites (package registries and GitHub),
+not company job boards. When Claude finishes it hands you `my-radar.json`; take that to GitHub.
+
+1. Download [`internship-radar-skill.zip`](https://github.com/BuildingBrian/mba-internship-radar/releases/latest/download/internship-radar-skill.zip) (also under this repo's **Releases**).
+2. In Claude: **Settings → Capabilities**, turn on **Code execution and file creation** (newer
+   layouts call it **Create and edit files**).
+3. **Customize → Skills → + → Create skill → Upload a skill**, and choose the zip
+   ([claude.ai/customize/skills](https://claude.ai/customize/skills)).
+4. Start a new chat: **"Set up my internship radar"**, then paste your profile from the guide page.
+
 ## Alerts and sources
 - **[ALERTS.md](ALERTS.md):** Email, iMessage and Google Sheets, plus WhatsApp, Slack, Discord and
   phone push.
@@ -72,11 +87,11 @@ folder, put the repo at `~/.claude/skills/internship-radar`.
   the cmg tool, or a paste into Claude, with ready-made prompts.
 
 ## What it covers, and what it doesn't
-- **Job boards:** 173 company boards checked automatically across 13 industries: tech, AI,
+- **Job boards:** 166 company boards checked automatically across 13 industries: tech, AI,
   robotics, defense, aerospace, fintech, climate, media, healthcare, consumer, consulting, finance
   and impact. Add any company with `python3 scripts/radar.py add "Company" company.com`.
-- **Check by hand:** most banks, McKinsey, BCG and Bain, and Google, Microsoft, Apple and Meta post
-  on their own sites. The radar lists them every Monday with links.
+- **Check by hand:** 77 more companies. Most banks, McKinsey, BCG and Bain, and Google, Microsoft,
+  Apple and Meta post on their own sites. The radar lists them every Monday with links.
 - **LinkedIn, Handshake, CMG:** through their own alert emails and the cmg tool, never by signing in.
 - It never applies for you. CMG stays the main source for on-campus recruiting and firm deadlines.
 
@@ -90,6 +105,8 @@ folder, put the repo at `~/.claude/skills/internship-radar`.
 
 ## Common questions
 - **Cost?** Free. GitHub's free plan covers daily runs.
+- **"No job board could be reached"?** You ran it in the Claude app, whose sandbox can't reach
+  job sites. Your profile is fine: run the radar on GitHub or in Claude Code.
 - **Too many or too few results?** Change `min_score`, or tell Claude "fewer results".
 - **Need visa sponsorship?** Say so in your profile. Postings that say they don't sponsor get a ⚠.
 - **Stop it?** GitHub → Actions → Internship Radar → ··· → Disable workflow.

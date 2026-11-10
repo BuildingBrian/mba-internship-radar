@@ -487,6 +487,52 @@ def find_board(name, domain=""):
     return {"name": name, "ats": "manual", "url": careers or (f"https://{domain}" if domain else "")}
 
 
+PROBES = ("https://boards-api.greenhouse.io/v1/boards/stripe",
+          "https://api.ashbyhq.com/posting-api/job-board/openai",
+          "https://api.lever.co/v0/postings/palantir?mode=json&limit=1")
+
+
+def online():
+    """True when job boards can be reached from here (the Claude app's code sandbox cannot)."""
+    for url in PROBES:
+        try:
+            fetch(url, retries=0, timeout=10)
+            return True
+        except (Exception, SystemExit):  # noqa: BLE001
+            continue
+    return False
+
+
+def resolve_dreams(prof, limit=10, today=None):
+    """Dream companies typed into the guide page (or added with no internet) start as links to
+    check by hand. Look for each one's job board, so later scans read it. Changes the profile in
+    place. Returns the names that now have a board, or None when nothing was looked up."""
+    today = today or datetime.now()
+
+    def due(c):
+        if c.get("ats") != "manual" or not c.get("dream"):
+            return False
+        try:  # looked before and found nothing: try again after a month
+            return today - datetime.strptime(c.get("looked", ""), "%Y-%m-%d") > timedelta(days=30)
+        except ValueError:
+            return True
+
+    todo = [c for c in prof.get("companies", []) if due(c)][:limit]
+    if not todo or not online():
+        return None
+    found = []
+    for c in todo:
+        e = find_board(c["name"], c.get("url", ""))
+        if e["ats"] == "manual":
+            c["looked"] = today.strftime("%Y-%m-%d")
+            c["url"] = c.get("url") or e.get("url", "")
+        else:
+            c.clear()
+            c.update({**e, "dream": True})
+            found.append(e["name"])
+    return found
+
+
 # --- Matching -------------------------------------------------------------------
 
 def load_industries():
@@ -621,6 +667,8 @@ def scan(prof, state, workers=12):
 
     with ThreadPoolExecutor(max_workers=workers) as ex:
         results = list(ex.map(one, auto))
+    boards = [err for c, _, err in results if c.get("ats") != "cmg"]  # cmg is a local copy, not a site
+    unreachable = bool(boards) and all(boards)
     mail_jobs, mail_err = email_alerts(prof)
     if mail_jobs or mail_err:
         hits = []
@@ -644,7 +692,7 @@ def scan(prof, state, workers=12):
     matches.sort(key=lambda h: (not h["new"], -h["score"], h["company"]))
     manual = [c for c in prof.get("companies", []) if c.get("ats") == "manual"]
     return {"matches": matches, "failed": failed, "checked": len(auto), "manual": manual, "at": now,
-            "emails": len(mail_jobs)}
+            "emails": len(mail_jobs), "unreachable": unreachable}
 
 
 def digest(prof, res, today=None, top_old=5, max_new=15):
@@ -652,9 +700,16 @@ def digest(prof, res, today=None, top_old=5, max_new=15):
     new = [m for m in res["matches"] if m["new"]]
     old = [m for m in res["matches"] if not m["new"]]
     who = prof.get("name", "").split(" ")[0]
+    down = res.get("unreachable")
     lines = [f"Internship Radar{(' for ' + who) if who else ''} · {today:%a %b} {today.day}",
-             f"{len(new)} new · {len(res['matches'])} open matches · {res['checked']} boards checked"
+             (f"No job board could be reached (0 of {res['checked']}), so this is not a real scan." if down else
+              f"{len(new)} new · {len(res['matches'])} open matches · {res['checked']} boards checked")
              + (f" · {res['emails']} jobs read from your alert emails" if res.get("emails") else ""), ""]
+    if down:
+        lines += ["This environment cannot reach job sites. The Claude app's code sandbox cannot, and",
+                  "some office or campus networks block them.",
+                  'Your profile is fine. Run the radar on GitHub (README: "GitHub (daily)") or on your',
+                  "own computer.", ""]
 
     def row(i, m):
         tag = "".join(f" ⚠ {f}" for f in m["flags"])
@@ -669,14 +724,14 @@ def digest(prof, res, today=None, top_old=5, max_new=15):
         if len(new) > max_new:
             lines.append(f"…and {len(new) - max_new} more new matches with lower scores (full list: radar-latest.md)")
         lines.append("")
-    else:
+    elif not down:
         lines += ["Nothing new since the last check.", ""]
     if old and top_old:
         lines.append("STILL OPEN (best first)")
         for i, m in enumerate(sorted(old, key=lambda m: -m["score"])[:top_old], 1):
             lines += row(i, m)
         lines.append("")
-    if res["failed"]:
+    if res["failed"] and not down:
         lines.append("Could not read: " + ", ".join(res["failed"][:8]))
     if res["manual"] and today.weekday() == 0:
         lines.append("Check by hand this week (own career sites):")
@@ -886,6 +941,11 @@ def main(argv=None):
             print("No channel is set up yet. See ALERTS.md.")
         return 0
 
+    found = resolve_dreams(prof)
+    if found is not None:
+        write(prof_path, prof)
+        if found:
+            print("Found the job boards for " + ", ".join(found) + ": they are scanned from now on.\n")
     state_path = os.path.join(folder, "radar-state.json")
     state = read(state_path, {})
     res = scan(prof, state)
@@ -894,6 +954,8 @@ def main(argv=None):
         fh.write(digest(prof, res, max_new=10**6, top_old=10**6))
     print(body)
     write(state_path, state)
+    if res.get("unreachable"):
+        return 1  # nothing was really checked: send nothing, and let a scheduled run show as failed
     if a.send:
         new = sum(1 for m in res["matches"] if m["new"])
         if new or a.always or (prof.get("alerts") or {}).get("send_when_quiet"):

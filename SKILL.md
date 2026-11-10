@@ -1,6 +1,6 @@
 ---
 name: internship-radar
-description: Sets up and runs a personal internship or job radar for MBA students. Asks about target industries, roles, dream companies, locations and visa needs; checks about 250 company job boards plus the user's LinkedIn, Handshake and CMG job-alert emails; and sends new matches by email, iMessage or a Google Sheet tracker (also WhatsApp, Slack, Discord, phone push). Use when someone says "set up my internship radar", "run my radar", "what's new on my radar", "add a company to my radar", "add CMG/LinkedIn/Handshake", "add these postings to my tracker", or "change how my radar alerts me".
+description: Sets up and runs a personal internship or job radar for MBA students. Asks about target industries, roles, dream companies, locations and visa needs; checks about 165 company job boards plus the user's LinkedIn, Handshake and CMG job-alert emails; and sends new matches by email, iMessage or a Google Sheet tracker (also WhatsApp, Slack, Discord, phone push). Use when someone says "set up my internship radar", "run my radar", "what's new on my radar", "add a company to my radar", "add CMG/LinkedIn/Handshake", "add these postings to my tracker", or "change how my radar alerts me".
 ---
 
 # Internship Radar
@@ -19,6 +19,7 @@ employers, and never signs in to any job site.
   Google Sheets tracker. `.github/workflows/radar.yml`: daily runs on GitHub.
 - `ALERTS.md` (alert channels), `SOURCES.md` (LinkedIn, Handshake, CMG), `README.md` (the guide).
 - `tests/`: offline tests, `python3 -m unittest discover -s tests`.
+- Guide page with the profile builder, to send students to: https://buildingbrian.github.io/mba-internship-radar/
 
 ## Workspace
 If the current folder contains `scripts/radar.py`, work there. Otherwise (for example when this skill
@@ -51,7 +52,9 @@ Otherwise ask these in ONE message, as a numbered list they can answer in one re
 2. `avoid` = the chosen industries' `avoid` lists, minus words in the student's own roles.
 3. `python3 scripts/radar.py preset <industry keys>`.
 4. Each dream company: `python3 scripts/radar.py add "Company" company.com`. Report whether its board
-   was found or it was listed to check by hand.
+   was found or it was listed to check by hand. With no internet (the Claude app), `add` cannot look
+   anything up and lists every company to check by hand: say the board will be looked up on the first
+   real scan, which does that for dream companies automatically, not that the company has no board.
 5. "anywhere" means an empty `locations` list.
 6. Sources from question 8: `email_alerts.enabled` and `from` (linkedin, handshake, cmg);
    `cmg_tool: true` only if the cmg tool is installed (check with `which cmg`). Walk them through
@@ -61,8 +64,11 @@ Otherwise ask these in ONE message, as a numbered list they can answer in one re
 ## 3. First scan
 `python3 scripts/radar.py scan` and show the digest. The first run lists everything open; later runs
 show only what's new.
-- No internet from your environment (some Claude sandboxes block it)? Say so, give them
-  `my-radar.json`, and move them to Claude Code or GitHub.
+- **"No job board could be reached".** Expected in the Claude app: its code sandbox reaches only
+  package registries and GitHub, not job sites. Do not retry, do not hunt for a workaround, and never
+  present it as a scan. Say it in one line, give them `my-radar.json` as a download, and walk them
+  through README → "GitHub (daily)" (four steps, nothing to install) or Claude Code on their own
+  computer. Their profile is finished; only the scan moves.
 - A certificate error on a Mac: give the fix the script prints.
 - Never invent postings, deadlines or companies. A board that failed is listed as failed.
 - `min_score` (default 55) shortens or widens the list.
@@ -73,7 +79,7 @@ show only what's new.
 - **Their Mac (needed for iMessage and the cmg tool):** a daily trigger running
   `cd ~/internship-radar && python3 scripts/radar.py scan --send`, from a Claude desktop scheduled
   task or launchd/cron. The Mac must be on.
-- **Just in Claude:** they say "run my radar".
+- **Just in Claude Code:** they say "run my radar". Not the Claude app: see step 3.
 
 ## 5. Alerts
 Follow ALERTS.md. Secrets go only into GitHub Secrets or the student's own `radar.env`: create

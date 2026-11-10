@@ -11,7 +11,7 @@ if you also want a "nothing new" note). Pick one or more.
 | WhatsApp | A WhatsApp message (unofficial free service) | 5 min | Yes | Yes |
 | Slack or Discord | A post in your own channel | 3 min | Yes | Yes |
 | Phone push (ntfy app) | A notification, no account needed | 2 min | Yes | Yes |
-| Just in Claude | You ask "run my radar" | none | | |
+| Just in Claude Code | You ask "run my radar" (the Claude app can't reach job boards) | none | | |
 
 Plain SMS isn't offered: US carriers now require business registration for automated texts.
 For a text-style alert use iMessage (Mac) or WhatsApp. Most people pick Email + Google Sheets.

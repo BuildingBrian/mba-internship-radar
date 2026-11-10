@@ -1,6 +1,7 @@
 """Offline tests: python3 -m unittest discover tests   (no network needed)."""
 import email
 import email.policy
+import json
 import os
 import sys
 import unittest
@@ -95,6 +96,92 @@ class Sheets(unittest.TestCase):
         rows = radar.sheet_rows([{"score": 90, "company": "Stripe", "title": "MBA Intern", "url": "u", "flags": ["deadline Nov 21"]}])
         self.assertEqual(rows[0]["company"], "Stripe")
         self.assertEqual(rows[0]["flags"], "deadline Nov 21")
+
+
+class DreamCompanies(unittest.TestCase):
+    """Dream companies typed into the guide page arrive as hand-check links; the scan upgrades them."""
+
+    def setUp(self):
+        self.saved = (radar.online, radar.find_board)
+
+    def tearDown(self):
+        radar.online, radar.find_board = self.saved
+
+    def prof(self):
+        return {"companies": [
+            {"name": "Stripe", "ats": "greenhouse", "token": "stripe"},
+            {"name": "Google", "ats": "manual", "url": "https://google.com/careers"},
+            {"name": "Duolingo", "ats": "manual", "url": "https://duolingo.com", "dream": True},
+            {"name": "Patagonia", "ats": "manual", "url": "", "dream": True}]}
+
+    def test_board_found_once_and_misses_remembered(self):
+        calls = []
+
+        def fake(name, domain=""):
+            calls.append(name)
+            if name == "Duolingo":
+                return {"name": name, "ats": "greenhouse", "token": "duolingo"}
+            return {"name": name, "ats": "manual", "url": "https://www.patagonia.com/careers"}
+
+        radar.online, radar.find_board = (lambda: True), fake
+        p = self.prof()
+        self.assertEqual(radar.resolve_dreams(p), ["Duolingo"])
+        by = {c["name"]: c for c in p["companies"]}
+        self.assertEqual(by["Duolingo"], {"name": "Duolingo", "ats": "greenhouse", "token": "duolingo", "dream": True})
+        self.assertEqual(by["Patagonia"]["ats"], "manual")
+        self.assertEqual(by["Patagonia"]["url"], "https://www.patagonia.com/careers")
+        self.assertIn("looked", by["Patagonia"])
+        self.assertNotIn("looked", by["Google"])  # the starter hand-check list is left alone
+        self.assertIsNone(radar.resolve_dreams(p))  # nothing left to look up
+        self.assertEqual(calls, ["Duolingo", "Patagonia"])
+
+    def test_no_internet_changes_nothing(self):
+        radar.online = lambda: False
+        radar.find_board = lambda *a: self.fail("must not look anything up without internet")
+        p = self.prof()
+        before = json.dumps(p, sort_keys=True)
+        self.assertIsNone(radar.resolve_dreams(p))
+        self.assertEqual(json.dumps(p, sort_keys=True), before)
+
+    def test_looks_again_after_a_month(self):
+        radar.online = lambda: True
+        radar.find_board = lambda name, domain="": {"name": name, "ats": "ashby", "token": "patagonia"}
+        p = {"companies": [{"name": "Patagonia", "ats": "manual", "url": "", "dream": True, "looked": "2026-11-01"}]}
+        self.assertIsNone(radar.resolve_dreams(p, today=radar.datetime(2026, 11, 20)))
+        self.assertEqual(radar.resolve_dreams(p, today=radar.datetime(2026, 12, 15)), ["Patagonia"])
+        self.assertEqual(p["companies"][0]["ats"], "ashby")
+
+
+class NoInternet(unittest.TestCase):
+    """In the Claude app's sandbox no job board answers. The radar must say so, not "nothing new"."""
+
+    def test_scan_flags_it_and_digest_says_so(self):
+        saved = dict(radar.READERS)
+
+        def blocked(c, q):
+            raise OSError("blocked")
+
+        try:
+            for k in radar.READERS:
+                radar.READERS[k] = blocked
+            prof = {"name": "Alex", "roles": ["strategy"], "companies": [
+                {"name": "Stripe", "ats": "greenhouse", "token": "stripe"},
+                {"name": "Notion", "ats": "ashby", "token": "notion"}]}
+            res = radar.scan(prof, {})
+        finally:
+            radar.READERS.update(saved)
+        self.assertTrue(res["unreachable"])
+        d = radar.digest(prof, res)
+        self.assertIn("No job board could be reached (0 of 2)", d)
+        self.assertNotIn("Nothing new", d)
+        self.assertNotIn("boards checked", d)
+
+    def test_one_board_down_is_not_no_internet(self):
+        res = {"matches": [], "failed": ["Stripe (HTTPError)"], "checked": 2, "manual": [], "at": "", "emails": 0,
+               "unreachable": False}
+        d = radar.digest({"name": "Alex"}, res)
+        self.assertIn("2 boards checked", d)
+        self.assertIn("Could not read: Stripe", d)
 
 
 if __name__ == "__main__":

@@ -42,6 +42,6 @@ jobs:
         run: |
           git config user.name "internship-radar"
           git config user.email "internship-radar@users.noreply.github.com"
-          git add radar-state.json radar-latest.md 2>/dev/null || true
+          git add my-radar.json radar-state.json radar-latest.md 2>/dev/null || true
           git commit -m "radar $(date -u +%F)" || echo "nothing new to save"
           git push
