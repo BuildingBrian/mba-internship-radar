@@ -1,0 +1,2047 @@
+{
+ "_note": "Starter companies by industry for Internship Radar. 'ats' entries were checked live on 2026-11-10; 'manual' entries post on their own career sites and are listed to check by hand. Add any company with: python3 scripts/radar.py add \"Company\" company.com",
+ "roles": {
+  "product management": [
+   "product manag",
+   "product owner",
+   "\\bpm\\b",
+   "\\bapm\\b",
+   "product strateg",
+   "product lead"
+  ],
+  "product marketing": [
+   "product marketing",
+   "\\bpmm\\b",
+   "go-to-market",
+   "\\bgtm\\b"
+  ],
+  "strategy": [
+   "strateg",
+   "corporate development",
+   "corp dev",
+   "bizops",
+   "business operations",
+   "chief of staff",
+   "strategic planning"
+  ],
+  "operations": [
+   "operations",
+   "supply chain",
+   "logistics",
+   "program manag",
+   "project manag",
+   "procurement",
+   "sourcing"
+  ],
+  "finance": [
+   "financ",
+   "fp&a",
+   "treasury",
+   "corporate development",
+   "investment"
+  ],
+  "marketing": [
+   "marketing",
+   "brand",
+   "growth",
+   "consumer insights",
+   "communications"
+  ],
+  "brand management": [
+   "brand",
+   "marketing",
+   "associate brand manager"
+  ],
+  "consulting": [
+   "consult",
+   "summer associate",
+   "strateg",
+   "advisory"
+  ],
+  "investment banking": [
+   "investment bank",
+   "summer associate",
+   "\\bibd\\b",
+   "m&a",
+   "capital markets",
+   "coverage"
+  ],
+  "investing": [
+   "invest",
+   "private equity",
+   "venture",
+   "asset management",
+   "portfolio",
+   "equity research",
+   "credit"
+  ],
+  "venture capital": [
+   "venture",
+   "investment",
+   "investing"
+  ],
+  "business development": [
+   "business development",
+   "biz ?dev",
+   "partnership",
+   "alliances"
+  ],
+  "sales & partnerships": [
+   "sales",
+   "account",
+   "partnership",
+   "go-to-market",
+   "\\bgtm\\b",
+   "commercial"
+  ],
+  "data & analytics": [
+   "analytics",
+   "\\bdata\\b",
+   "insights",
+   "business intelligence"
+  ],
+  "general management": [
+   "general management",
+   "leadership development",
+   "rotational",
+   "\\bmba\\b"
+  ],
+  "people & hr": [
+   "people",
+   "talent",
+   "human resources",
+   "\\bhr\\b",
+   "organizational"
+  ],
+  "deployment & solutions": [
+   "forward deployed",
+   "deployment",
+   "solutions",
+   "implementation",
+   "customer success"
+  ],
+  "policy & government": [
+   "policy",
+   "government",
+   "public sector",
+   "regulatory"
+  ],
+  "real estate": [
+   "real estate",
+   "development",
+   "acquisitions"
+  ]
+ },
+ "locations": {
+  "san francisco bay area": [
+   "san francisco",
+   "bay area",
+   "palo alto",
+   "mountain view",
+   "menlo park",
+   "san jose",
+   "santa clara",
+   "sunnyvale",
+   "oakland",
+   "berkeley",
+   "redwood city",
+   "san mateo",
+   "foster city",
+   "san carlos",
+   "emeryville",
+   "fremont",
+   "hayward",
+   "san leandro",
+   "cupertino",
+   "milpitas",
+   "burlingame",
+   "pleasanton",
+   "walnut creek",
+   "san bruno",
+   "brisbane",
+   "alameda"
+  ],
+  "bay area": [
+   "san francisco",
+   "bay area",
+   "palo alto",
+   "mountain view",
+   "menlo park",
+   "san jose",
+   "santa clara",
+   "sunnyvale",
+   "oakland",
+   "berkeley",
+   "redwood city",
+   "san mateo",
+   "foster city",
+   "san carlos",
+   "emeryville",
+   "fremont",
+   "hayward",
+   "san leandro",
+   "cupertino",
+   "milpitas",
+   "burlingame",
+   "pleasanton",
+   "walnut creek",
+   "san bruno",
+   "brisbane",
+   "alameda"
+  ],
+  "new york": [
+   "new york",
+   "nyc",
+   "brooklyn",
+   "jersey city"
+  ],
+  "los angeles": [
+   "los angeles",
+   "santa monica",
+   "culver city",
+   "playa vista",
+   "el segundo",
+   "burbank",
+   "irvine",
+   "hawthorne",
+   "long beach",
+   "pasadena"
+  ],
+  "seattle": [
+   "seattle",
+   "bellevue",
+   "redmond",
+   "kirkland"
+  ],
+  "boston": [
+   "boston",
+   "cambridge",
+   "somerville",
+   "waltham",
+   "burlington"
+  ],
+  "washington dc": [
+   "washington",
+   "arlington",
+   "mclean",
+   "reston",
+   "alexandria",
+   "bethesda",
+   "tysons",
+   "herndon",
+   "chantilly"
+  ],
+  "chicago": [
+   "chicago",
+   "evanston"
+  ],
+  "austin": [
+   "austin"
+  ],
+  "denver": [
+   "denver",
+   "boulder"
+  ],
+  "atlanta": [
+   "atlanta"
+  ],
+  "dallas": [
+   "dallas",
+   "plano",
+   "irving"
+  ],
+  "remote": [
+   "remote",
+   "anywhere"
+  ]
+ },
+ "industries": {
+  "tech": {
+   "label": "Big tech & growth tech",
+   "roles": [
+    "product management",
+    "strategy",
+    "operations",
+    "product marketing"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "Google, Microsoft, Apple and Meta post on their own sites; they are listed to check by hand.",
+   "companies": [
+    {
+     "name": "Uber",
+     "ats": "smartrecruiters",
+     "token": "Uber"
+    },
+    {
+     "name": "Lyft",
+     "ats": "greenhouse",
+     "token": "lyft"
+    },
+    {
+     "name": "Pinterest",
+     "ats": "greenhouse",
+     "token": "pinterest"
+    },
+    {
+     "name": "Dropbox",
+     "ats": "greenhouse",
+     "token": "dropbox"
+    },
+    {
+     "name": "Figma",
+     "ats": "greenhouse",
+     "token": "figma"
+    },
+    {
+     "name": "Notion",
+     "ats": "ashby",
+     "token": "notion"
+    },
+    {
+     "name": "Snowflake",
+     "ats": "ashby",
+     "token": "snowflake"
+    },
+    {
+     "name": "Okta",
+     "ats": "greenhouse",
+     "token": "okta"
+    },
+    {
+     "name": "Samsara",
+     "ats": "greenhouse",
+     "token": "samsara"
+    },
+    {
+     "name": "Asana",
+     "ats": "greenhouse",
+     "token": "asana"
+    },
+    {
+     "name": "Workday",
+     "ats": "workday",
+     "tenant": "workday",
+     "pod": "wd5",
+     "site": "Workday"
+    },
+    {
+     "name": "Twilio",
+     "ats": "greenhouse",
+     "token": "twilio"
+    },
+    {
+     "name": "LinkedIn",
+     "ats": "lever",
+     "token": "linkedin"
+    },
+    {
+     "name": "Amazon",
+     "ats": "amazon",
+     "queries": [
+      "MBA intern",
+      "MBA internship",
+      "MBA leadership development",
+      "Pathways MBA"
+     ]
+    },
+    {
+     "name": "NVIDIA",
+     "ats": "workday",
+     "tenant": "nvidia",
+     "pod": "wd5",
+     "site": "NVIDIAExternalCareerSite"
+    },
+    {
+     "name": "Salesforce",
+     "ats": "workday",
+     "tenant": "salesforce",
+     "pod": "wd12",
+     "site": "External_Career_Site"
+    },
+    {
+     "name": "Adobe",
+     "ats": "workday",
+     "tenant": "adobe",
+     "pod": "wd5",
+     "site": "external_experienced"
+    },
+    {
+     "name": "Stripe",
+     "ats": "greenhouse",
+     "token": "stripe"
+    },
+    {
+     "name": "Airbnb",
+     "ats": "greenhouse",
+     "token": "airbnb"
+    },
+    {
+     "name": "ServiceNow",
+     "ats": "smartrecruiters",
+     "token": "ServiceNow",
+     "queries": [
+      "intern",
+      "MBA",
+      "Summer 2027"
+     ]
+    },
+    {
+     "name": "CrowdStrike",
+     "ats": "workday",
+     "tenant": "crowdstrike",
+     "pod": "wd5",
+     "site": "crowdstrikecareers"
+    },
+    {
+     "name": "Instacart",
+     "ats": "greenhouse",
+     "token": "instacart"
+    },
+    {
+     "name": "Visa",
+     "ats": "workday",
+     "tenant": "visa",
+     "pod": "wd5",
+     "site": "Visa"
+    },
+    {
+     "name": "Google",
+     "ats": "manual",
+     "url": "https://google.com/careers"
+    },
+    {
+     "name": "Microsoft",
+     "ats": "manual",
+     "url": "https://microsoft.com/careers"
+    },
+    {
+     "name": "Apple",
+     "ats": "manual",
+     "url": "https://apple.com/careers"
+    },
+    {
+     "name": "Meta",
+     "ats": "manual",
+     "url": "https://meta.com"
+    },
+    {
+     "name": "Intuit",
+     "ats": "manual",
+     "url": "https://intuit.com/careers"
+    },
+    {
+     "name": "DoorDash",
+     "ats": "manual",
+     "url": "https://doordash.com"
+    },
+    {
+     "name": "Atlassian",
+     "ats": "manual",
+     "url": "https://atlassian.com/careers"
+    },
+    {
+     "name": "Rippling",
+     "ats": "manual",
+     "url": "https://rippling.com/careers"
+    },
+    {
+     "name": "HubSpot",
+     "ats": "manual",
+     "url": "https://hubspot.com/careers"
+    },
+    {
+     "name": "Autodesk",
+     "ats": "manual",
+     "url": "https://jobs.autodesk.com"
+    },
+    {
+     "name": "Cisco",
+     "ats": "manual",
+     "url": "https://careers.cisco.com"
+    }
+   ]
+  },
+  "ai": {
+   "label": "AI & frontier tech",
+   "roles": [
+    "strategy",
+    "operations",
+    "product management",
+    "deployment & solutions",
+    "business development"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "AI labs rarely title a role \"MBA intern\"; the radar also catches strategy, operations and deployment roles.",
+   "companies": [
+    {
+     "name": "Anthropic",
+     "ats": "greenhouse",
+     "token": "anthropic"
+    },
+    {
+     "name": "OpenAI",
+     "ats": "ashby",
+     "token": "openai"
+    },
+    {
+     "name": "Scale AI",
+     "ats": "greenhouse",
+     "token": "scaleai"
+    },
+    {
+     "name": "Databricks",
+     "ats": "greenhouse",
+     "token": "databricks"
+    },
+    {
+     "name": "xAI",
+     "ats": "greenhouse",
+     "token": "xai"
+    },
+    {
+     "name": "Perplexity",
+     "ats": "ashby",
+     "token": "perplexity"
+    },
+    {
+     "name": "Anysphere (Cursor)",
+     "ats": "ashby",
+     "token": "cursor"
+    },
+    {
+     "name": "Cohere",
+     "ats": "ashby",
+     "token": "cohere"
+    },
+    {
+     "name": "Glean",
+     "ats": "greenhouse",
+     "token": "gleanwork"
+    },
+    {
+     "name": "Harvey",
+     "ats": "ashby",
+     "token": "harvey"
+    },
+    {
+     "name": "Sierra",
+     "ats": "ashby",
+     "token": "sierra"
+    },
+    {
+     "name": "CoreWeave",
+     "ats": "greenhouse",
+     "token": "coreweave"
+    },
+    {
+     "name": "Mistral AI",
+     "ats": "ashby",
+     "token": "mistral.ai"
+    }
+   ]
+  },
+  "robotics": {
+   "label": "Robotics, autonomy & hard tech",
+   "roles": [
+    "strategy",
+    "operations",
+    "product management",
+    "business development",
+    "deployment & solutions"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "Many robotics startups have no internship program; use the radar for the ones that post and reach out to the rest.",
+   "companies": [
+    {
+     "name": "1X Technologies",
+     "ats": "ashby",
+     "token": "1x"
+    },
+    {
+     "name": "Generalist AI",
+     "ats": "ashby",
+     "token": "generalist"
+    },
+    {
+     "name": "Saildrone",
+     "ats": "greenhouse",
+     "token": "saildroneinc"
+    },
+    {
+     "name": "Ambi Robotics",
+     "ats": "lever",
+     "token": "ambirobotics"
+    },
+    {
+     "name": "The Bot Company",
+     "ats": "ashby",
+     "token": "thebotcompany"
+    },
+    {
+     "name": "Nimble Robotics",
+     "ats": "greenhouse",
+     "token": "nimblerobotics"
+    },
+    {
+     "name": "World Labs",
+     "ats": "ashby",
+     "token": "worldlabs"
+    },
+    {
+     "name": "OSARO",
+     "ats": "lever",
+     "token": "osaro"
+    },
+    {
+     "name": "Bedrock Robotics",
+     "ats": "ashby",
+     "token": "bedrock-robotics"
+    },
+    {
+     "name": "Bright Machines",
+     "ats": "lever",
+     "token": "brightmachines"
+    },
+    {
+     "name": "Applied Intuition",
+     "ats": "ashby",
+     "token": "applied"
+    },
+    {
+     "name": "Sunday Robotics",
+     "ats": "ashby",
+     "token": "sunday"
+    },
+    {
+     "name": "Dyna Robotics",
+     "ats": "ashby",
+     "token": "dyna-robotics"
+    },
+    {
+     "name": "Mind Robotics",
+     "ats": "ashby",
+     "token": "mindrobotics"
+    },
+    {
+     "name": "Dexmate",
+     "ats": "ashby",
+     "token": "dexmate"
+    },
+    {
+     "name": "Toyota Research Institute",
+     "ats": "lever",
+     "token": "tri"
+    },
+    {
+     "name": "Collaborative Robotics (Cobot)",
+     "ats": "ashby",
+     "token": "cobot"
+    },
+    {
+     "name": "Matic Robots",
+     "ats": "ashby",
+     "token": "maticrobots"
+    },
+    {
+     "name": "Kodiak",
+     "ats": "greenhouse",
+     "token": "kodiak"
+    },
+    {
+     "name": "Gatik",
+     "ats": "greenhouse",
+     "token": "gatikaiinc"
+    },
+    {
+     "name": "Simbe Robotics",
+     "ats": "lever",
+     "token": "SimbeRobotics"
+    },
+    {
+     "name": "Mashgin",
+     "ats": "lever",
+     "token": "mashgin"
+    },
+    {
+     "name": "Figure AI",
+     "ats": "greenhouse",
+     "token": "figureai"
+    },
+    {
+     "name": "Physical Intelligence",
+     "ats": "ashby",
+     "token": "physicalintelligence"
+    },
+    {
+     "name": "Zipline",
+     "ats": "greenhouse",
+     "token": "flyzipline"
+    },
+    {
+     "name": "Boston Dynamics",
+     "ats": "workday",
+     "tenant": "bostondynamics",
+     "pod": "wd1",
+     "site": "Boston_Dynamics"
+    },
+    {
+     "name": "Waymo",
+     "ats": "greenhouse",
+     "token": "waymo"
+    },
+    {
+     "name": "Agility Robotics",
+     "ats": "greenhouse",
+     "token": "agilityrobotics"
+    },
+    {
+     "name": "Apptronik",
+     "ats": "greenhouse",
+     "token": "apptronik"
+    },
+    {
+     "name": "Gecko Robotics",
+     "ats": "ashby",
+     "token": "gecko-robotics"
+    },
+    {
+     "name": "Nuro",
+     "ats": "greenhouse",
+     "token": "nuro"
+    },
+    {
+     "name": "Dexterity",
+     "ats": "lever",
+     "token": "dexterity"
+    },
+    {
+     "name": "Symbotic",
+     "ats": "workday",
+     "tenant": "symbotic",
+     "pod": "wd504",
+     "site": "Symbotic"
+    },
+    {
+     "name": "Serve Robotics",
+     "ats": "ashby",
+     "token": "serverobotics"
+    },
+    {
+     "name": "Zoox",
+     "ats": "lever",
+     "token": "zoox"
+    },
+    {
+     "name": "Skild AI",
+     "ats": "greenhouse",
+     "token": "skildai-careers"
+    },
+    {
+     "name": "Intrinsic",
+     "ats": "greenhouse",
+     "token": "intrinsicrobotics"
+    }
+   ]
+  },
+  "defense": {
+   "label": "Defense & dual-use",
+   "roles": [
+    "strategy",
+    "operations",
+    "business development",
+    "product management",
+    "deployment & solutions"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "Some roles require U.S. citizenship or a clearance; the digest flags them.",
+   "companies": [
+    {
+     "name": "Anduril",
+     "ats": "greenhouse",
+     "token": "andurilindustries"
+    },
+    {
+     "name": "Palantir",
+     "ats": "lever",
+     "token": "palantir"
+    },
+    {
+     "name": "Shield AI",
+     "ats": "lever",
+     "token": "shieldai"
+    },
+    {
+     "name": "Voyager Technologies",
+     "ats": "greenhouse",
+     "token": "voyagertechnologiesinc"
+    },
+    {
+     "name": "Skydio",
+     "ats": "ashby",
+     "token": "skydio"
+    },
+    {
+     "name": "Saronic",
+     "ats": "ashby",
+     "token": "saronic"
+    },
+    {
+     "name": "Epirus",
+     "ats": "greenhouse",
+     "token": "epirus"
+    },
+    {
+     "name": "Hadrian",
+     "ats": "ashby",
+     "token": "hadrian-automation"
+    },
+    {
+     "name": "Second Front Systems",
+     "ats": "ashby",
+     "token": "Second-Front-Systems"
+    },
+    {
+     "name": "True Anomaly",
+     "ats": "greenhouse",
+     "token": "trueanomalyinc"
+    },
+    {
+     "name": "Ursa Major",
+     "ats": "greenhouse",
+     "token": "ursamajor"
+    },
+    {
+     "name": "Vannevar Labs",
+     "ats": "greenhouse",
+     "token": "vannevarlabs"
+    },
+    {
+     "name": "Chaos Industries",
+     "ats": "greenhouse",
+     "token": "chaosindustries"
+    },
+    {
+     "name": "Istari Digital",
+     "ats": "lever",
+     "token": "istaridigital.ai"
+    },
+    {
+     "name": "Hermeus",
+     "ats": "lever",
+     "token": "hermeus"
+    },
+    {
+     "name": "Booz Allen Hamilton",
+     "ats": "workday",
+     "tenant": "bah",
+     "pod": "wd1",
+     "site": "BAH_Jobs"
+    },
+    {
+     "name": "Leidos",
+     "ats": "workday",
+     "tenant": "leidos",
+     "pod": "wd5",
+     "site": "External"
+    },
+    {
+     "name": "Northrop Grumman",
+     "ats": "workday",
+     "tenant": "ngc",
+     "pod": "wd1",
+     "site": "Northrop_Grumman_External_Site",
+     "queries": [
+      "MBA",
+      "intern business",
+      "intern program management",
+      "intern strategy"
+     ]
+    },
+    {
+     "name": "Boeing",
+     "ats": "workday",
+     "tenant": "boeing",
+     "pod": "wd1",
+     "site": "EXTERNAL_CAREERS",
+     "queries": [
+      "MBA",
+      "internship business",
+      "internship program management",
+      "internship strategy"
+     ]
+    },
+    {
+     "name": "RTX",
+     "ats": "workday",
+     "tenant": "globalhr",
+     "pod": "wd5",
+     "site": "REC_RTX_Ext_Gateway",
+     "queries": [
+      "MBA",
+      "intern business development",
+      "intern program management",
+      "leadership development program"
+     ]
+    },
+    {
+     "name": "GDIT (General Dynamics)",
+     "ats": "workday",
+     "tenant": "gdit",
+     "pod": "wd5",
+     "site": "External_Career_Site",
+     "queries": [
+      "MBA",
+      "intern business",
+      "intern program management"
+     ]
+    }
+   ]
+  },
+  "aerospace": {
+   "label": "Aviation & space",
+   "roles": [
+    "strategy",
+    "operations",
+    "business development",
+    "finance",
+    "product management"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "",
+   "companies": [
+    {
+     "name": "SpaceX",
+     "ats": "greenhouse",
+     "token": "spacex"
+    },
+    {
+     "name": "Relativity Space",
+     "ats": "greenhouse",
+     "token": "relativity"
+    },
+    {
+     "name": "Rocket Lab",
+     "ats": "greenhouse",
+     "token": "rocketlab"
+    },
+    {
+     "name": "Planet",
+     "ats": "greenhouse",
+     "token": "planetlabs"
+    },
+    {
+     "name": "Varda Space",
+     "ats": "greenhouse",
+     "token": "vardaspace"
+    },
+    {
+     "name": "Pyka",
+     "ats": "lever",
+     "token": "pyka"
+    },
+    {
+     "name": "Beta Technologies",
+     "ats": "greenhouse",
+     "token": "betatechnologiesinc"
+    },
+    {
+     "name": "Archer Aviation",
+     "ats": "greenhouse",
+     "token": "archer56"
+    },
+    {
+     "name": "Reliable Robotics",
+     "ats": "ashby",
+     "token": "reliable-robotics"
+    },
+    {
+     "name": "Merlin Labs",
+     "ats": "lever",
+     "token": "merlinlabs"
+    },
+    {
+     "name": "Boeing",
+     "ats": "workday",
+     "tenant": "boeing",
+     "pod": "wd1",
+     "site": "EXTERNAL_CAREERS",
+     "queries": [
+      "MBA",
+      "internship business",
+      "internship program management",
+      "internship strategy"
+     ]
+    },
+    {
+     "name": "Joby Aviation",
+     "ats": "manual",
+     "url": "https://jobyaviation.com/careers"
+    },
+    {
+     "name": "Blue Origin",
+     "ats": "manual",
+     "url": "https://www.blueorigin.com/careers"
+    }
+   ]
+  },
+  "consulting": {
+   "label": "Consulting",
+   "roles": [
+    "consulting",
+    "strategy"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "developer",
+    "technician",
+    "scientist",
+    "phd",
+    "recruiter",
+    "legal",
+    "counsel",
+    "nurse",
+    "clinical",
+    "pharmacist",
+    "store",
+    "retail associate",
+    "warehouse"
+   ],
+   "note": "McKinsey, BCG, Bain and most consulting firms take MBA applications on their own sites with fixed fall deadlines; they are listed to check by hand, and CMG is the main source.",
+   "companies": [
+    {
+     "name": "Accenture",
+     "ats": "workday",
+     "tenant": "accenture",
+     "pod": "wd103",
+     "site": "AccentureCareers"
+    },
+    {
+     "name": "Oliver Wyman",
+     "ats": "lever",
+     "token": "oliverwyman"
+    },
+    {
+     "name": "Roland Berger",
+     "ats": "smartrecruiters",
+     "token": "RolandBerger"
+    },
+    {
+     "name": "PwC Strategy&",
+     "ats": "workday",
+     "tenant": "pwc",
+     "pod": "wd3",
+     "site": "US_Entry_Level_Careers",
+     "queries": [
+      "strategy intern",
+      "MBA",
+      "senior associate summer"
+     ]
+    },
+    {
+     "name": "Guidehouse",
+     "ats": "workday",
+     "tenant": "guidehouse",
+     "pod": "wd1",
+     "site": "External",
+     "queries": [
+      "intern",
+      "MBA"
+     ]
+    },
+    {
+     "name": "Booz Allen Hamilton",
+     "ats": "workday",
+     "tenant": "bah",
+     "pod": "wd1",
+     "site": "BAH_Jobs"
+    },
+    {
+     "name": "McKinsey & Company",
+     "ats": "manual",
+     "url": "https://jobs.mckinsey.com"
+    },
+    {
+     "name": "Boston Consulting Group",
+     "ats": "manual",
+     "url": "https://careers.bcg.com"
+    },
+    {
+     "name": "Bain & Company",
+     "ats": "manual",
+     "url": "https://careers.bain.com"
+    },
+    {
+     "name": "Deloitte",
+     "ats": "manual",
+     "url": "https://www2.deloitte.com/us/en/careers/students.html"
+    },
+    {
+     "name": "EY-Parthenon",
+     "ats": "manual",
+     "url": "https://ey.com/careers"
+    },
+    {
+     "name": "Kearney",
+     "ats": "manual",
+     "url": "https://www.kearney.com/careers"
+    },
+    {
+     "name": "L.E.K. Consulting",
+     "ats": "manual",
+     "url": "https://lek.com/careers"
+    },
+    {
+     "name": "ZS Associates",
+     "ats": "manual",
+     "url": "https://zs.com/careers"
+    },
+    {
+     "name": "Alvarez & Marsal",
+     "ats": "manual",
+     "url": "https://alvarezandmarsal.com"
+    }
+   ]
+  },
+  "finance": {
+   "label": "Banking, investing & asset management",
+   "roles": [
+    "investment banking",
+    "investing",
+    "finance"
+   ],
+   "avoid": [
+    "engineer",
+    "software",
+    "developer",
+    "technician",
+    "scientist",
+    "phd",
+    "recruiter",
+    "legal",
+    "counsel"
+   ],
+   "note": "Most banks and investment firms post on their own sites (and through CMG), so the radar catches only a few; the rest are listed to check by hand.",
+   "companies": [
+    {
+     "name": "Citi",
+     "ats": "workday",
+     "tenant": "citi",
+     "pod": "wd5",
+     "site": "2"
+    },
+    {
+     "name": "Moelis",
+     "ats": "workday",
+     "tenant": "moelis",
+     "pod": "wd1",
+     "site": "Experienced-Hires"
+    },
+    {
+     "name": "Apollo",
+     "ats": "workday",
+     "tenant": "athene",
+     "pod": "wd5",
+     "site": "Apollo_Careers"
+    },
+    {
+     "name": "TPG",
+     "ats": "greenhouse",
+     "token": "tpgcareers"
+    },
+    {
+     "name": "Bain Capital",
+     "ats": "workday",
+     "tenant": "baincapital",
+     "pod": "wd1",
+     "site": "External_Public"
+    },
+    {
+     "name": "Goldman Sachs",
+     "ats": "manual",
+     "url": "https://goldmansachs.com/careers"
+    },
+    {
+     "name": "Morgan Stanley",
+     "ats": "manual",
+     "url": "https://morganstanley.com/careers"
+    },
+    {
+     "name": "J.P. Morgan",
+     "ats": "manual",
+     "url": "https://jpmorganchase.com/careers"
+    },
+    {
+     "name": "Bank of America",
+     "ats": "manual",
+     "url": "https://bankofamerica.com/careers"
+    },
+    {
+     "name": "Evercore",
+     "ats": "manual",
+     "url": "https://evercore.com/careers"
+    },
+    {
+     "name": "Lazard",
+     "ats": "manual",
+     "url": "https://lazard.com/careers"
+    },
+    {
+     "name": "Centerview Partners",
+     "ats": "manual",
+     "url": "https://centerviewpartners.com/careers"
+    },
+    {
+     "name": "BlackRock",
+     "ats": "manual",
+     "url": "https://blackrock.com/careers"
+    },
+    {
+     "name": "Blackstone",
+     "ats": "manual",
+     "url": "https://blackstone.com"
+    },
+    {
+     "name": "KKR",
+     "ats": "manual",
+     "url": "https://kkr.com/careers"
+    },
+    {
+     "name": "Carlyle",
+     "ats": "manual",
+     "url": "https://carlyle.com"
+    },
+    {
+     "name": "Wells Fargo",
+     "ats": "manual",
+     "url": "https://wellsfargo.com/careers"
+    },
+    {
+     "name": "Fidelity Investments",
+     "ats": "manual",
+     "url": "https://fidelity.com"
+    }
+   ]
+  },
+  "fintech": {
+   "label": "Fintech & payments",
+   "roles": [
+    "strategy",
+    "product management",
+    "operations",
+    "finance",
+    "business development"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "",
+   "companies": [
+    {
+     "name": "Block",
+     "ats": "greenhouse",
+     "token": "block"
+    },
+    {
+     "name": "Plaid",
+     "ats": "ashby",
+     "token": "plaid"
+    },
+    {
+     "name": "Ramp",
+     "ats": "ashby",
+     "token": "ramp"
+    },
+    {
+     "name": "Brex",
+     "ats": "greenhouse",
+     "token": "brex"
+    },
+    {
+     "name": "Chime",
+     "ats": "greenhouse",
+     "token": "chime"
+    },
+    {
+     "name": "Robinhood",
+     "ats": "greenhouse",
+     "token": "robinhood"
+    },
+    {
+     "name": "Coinbase",
+     "ats": "greenhouse",
+     "token": "coinbase"
+    },
+    {
+     "name": "Affirm",
+     "ats": "greenhouse",
+     "token": "affirm"
+    },
+    {
+     "name": "Mercury",
+     "ats": "greenhouse",
+     "token": "mercury"
+    },
+    {
+     "name": "SoFi",
+     "ats": "greenhouse",
+     "token": "sofi"
+    },
+    {
+     "name": "Mastercard",
+     "ats": "workday",
+     "tenant": "mastercard",
+     "pod": "wd1",
+     "site": "CorporateCareers"
+    },
+    {
+     "name": "Carta",
+     "ats": "greenhouse",
+     "token": "carta"
+    },
+    {
+     "name": "Stripe",
+     "ats": "greenhouse",
+     "token": "stripe"
+    },
+    {
+     "name": "Tereina",
+     "ats": "ashby",
+     "token": "Tereina"
+    },
+    {
+     "name": "Visa",
+     "ats": "workday",
+     "tenant": "visa",
+     "pod": "wd5",
+     "site": "Visa"
+    },
+    {
+     "name": "PayPal",
+     "ats": "manual",
+     "url": "https://paypal.com"
+    },
+    {
+     "name": "American Express",
+     "ats": "manual",
+     "url": "https://americanexpress.com/careers"
+    }
+   ]
+  },
+  "consumer": {
+   "label": "Consumer, CPG & retail",
+   "roles": [
+    "brand management",
+    "marketing",
+    "strategy",
+    "finance",
+    "operations"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "developer",
+    "technician",
+    "scientist",
+    "phd",
+    "recruiter",
+    "legal",
+    "counsel",
+    "nurse",
+    "clinical",
+    "pharmacist",
+    "store",
+    "retail associate",
+    "warehouse"
+   ],
+   "note": "Several big CPG companies (P&G, PepsiCo, Mars) post on their own sites; they are listed to check by hand.",
+   "companies": [
+    {
+     "name": "General Mills",
+     "ats": "workday",
+     "tenant": "genmills",
+     "pod": "wd1",
+     "site": "GMI_External_Careers"
+    },
+    {
+     "name": "Nike",
+     "ats": "workday",
+     "tenant": "nike",
+     "pod": "wd1",
+     "site": "nke2"
+    },
+    {
+     "name": "Gap Inc.",
+     "ats": "smartrecruiters",
+     "token": "GapInc"
+    },
+    {
+     "name": "L'Oréal",
+     "ats": "smartrecruiters",
+     "token": "LOrAl"
+    },
+    {
+     "name": "Unilever",
+     "ats": "workday",
+     "tenant": "unilever",
+     "pod": "wd3",
+     "site": "Unilever_Experienced_Professionals"
+    },
+    {
+     "name": "Target",
+     "ats": "workday",
+     "tenant": "target",
+     "pod": "wd5",
+     "site": "targetcareers"
+    },
+    {
+     "name": "Kimberly-Clark",
+     "ats": "smartrecruiters",
+     "token": "KimberlyClark"
+    },
+    {
+     "name": "The Coca-Cola Company",
+     "ats": "workday",
+     "tenant": "coke",
+     "pod": "wd1",
+     "site": "coca-cola-careers"
+    },
+    {
+     "name": "Instacart",
+     "ats": "greenhouse",
+     "token": "instacart"
+    },
+    {
+     "name": "Procter & Gamble",
+     "ats": "manual",
+     "url": "https://pg.com/careers"
+    },
+    {
+     "name": "Clorox",
+     "ats": "manual",
+     "url": "https://thecloroxcompany.com/careers"
+    },
+    {
+     "name": "PepsiCo",
+     "ats": "manual",
+     "url": "https://pepsico.com/careers"
+    },
+    {
+     "name": "Levi Strauss & Co.",
+     "ats": "manual",
+     "url": "https://levistrauss.com"
+    },
+    {
+     "name": "The Estée Lauder Companies",
+     "ats": "manual",
+     "url": "https://elcompanies.com/careers"
+    },
+    {
+     "name": "Mars",
+     "ats": "manual",
+     "url": "https://mars.com/careers"
+    },
+    {
+     "name": "Kraft Heinz",
+     "ats": "manual",
+     "url": "https://careers.kraftheinzcompany.com"
+    },
+    {
+     "name": "Walmart",
+     "ats": "manual",
+     "url": "https://walmart.com/careers"
+    },
+    {
+     "name": "Sephora",
+     "ats": "manual",
+     "url": "https://sephora.com/careers"
+    },
+    {
+     "name": "lululemon",
+     "ats": "manual",
+     "url": "https://careers.lululemon.com"
+    },
+    {
+     "name": "Starbucks",
+     "ats": "manual",
+     "url": "https://starbucks.com/careers"
+    },
+    {
+     "name": "Colgate-Palmolive",
+     "ats": "manual",
+     "url": "https://colgatepalmolive.com"
+    },
+    {
+     "name": "Mondelez International",
+     "ats": "manual",
+     "url": "https://mondelezinternational.com/careers"
+    }
+   ]
+  },
+  "healthcare": {
+   "label": "Healthcare, biotech & medtech",
+   "roles": [
+    "strategy",
+    "marketing",
+    "business development",
+    "finance",
+    "operations",
+    "product management"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "developer",
+    "technician",
+    "scientist",
+    "phd",
+    "recruiter",
+    "legal",
+    "counsel",
+    "nurse",
+    "clinical",
+    "pharmacist",
+    "store",
+    "retail associate",
+    "warehouse"
+   ],
+   "note": "",
+   "companies": [
+    {
+     "name": "Amgen",
+     "ats": "workday",
+     "tenant": "amgen",
+     "pod": "wd1",
+     "site": "Careers"
+    },
+    {
+     "name": "Gilead Sciences",
+     "ats": "workday",
+     "tenant": "gilead",
+     "pod": "wd1",
+     "site": "gileadcareers"
+    },
+    {
+     "name": "Stryker",
+     "ats": "workday",
+     "tenant": "stryker",
+     "pod": "wd1",
+     "site": "StrykerCareers"
+    },
+    {
+     "name": "Intuitive",
+     "ats": "smartrecruiters",
+     "token": "Intuitive"
+    },
+    {
+     "name": "Abbott",
+     "ats": "workday",
+     "tenant": "abbott",
+     "pod": "wd5",
+     "site": "abbottcareers"
+    },
+    {
+     "name": "Illumina",
+     "ats": "workday",
+     "tenant": "illumina",
+     "pod": "wd1",
+     "site": "illumina-careers"
+    },
+    {
+     "name": "Verily",
+     "ats": "workday",
+     "tenant": "verily",
+     "pod": "wd1",
+     "site": "Verily_Careers"
+    },
+    {
+     "name": "Oscar Health",
+     "ats": "greenhouse",
+     "token": "oscar"
+    },
+    {
+     "name": "Edwards Lifesciences",
+     "ats": "workday",
+     "tenant": "edwards",
+     "pod": "wd5",
+     "site": "EdwardsCareers"
+    },
+    {
+     "name": "Genentech",
+     "ats": "manual",
+     "url": "https://gene.com/careers"
+    },
+    {
+     "name": "Medtronic",
+     "ats": "manual",
+     "url": "https://medtronic.com/careers"
+    },
+    {
+     "name": "Johnson & Johnson",
+     "ats": "manual",
+     "url": "https://jnj.com/careers"
+    },
+    {
+     "name": "Kaiser Permanente",
+     "ats": "manual",
+     "url": "https://kaiserpermanente.org/careers"
+    },
+    {
+     "name": "Tempus",
+     "ats": "manual",
+     "url": "https://tempus.com"
+    },
+    {
+     "name": "Hims & Hers",
+     "ats": "manual",
+     "url": "https://hims.com"
+    },
+    {
+     "name": "Thermo Fisher Scientific",
+     "ats": "manual",
+     "url": "https://thermofisher.com/careers"
+    },
+    {
+     "name": "Boston Scientific",
+     "ats": "manual",
+     "url": "https://bostonscientific.com/careers"
+    },
+    {
+     "name": "CVS Health",
+     "ats": "manual",
+     "url": "https://cvshealth.com/careers"
+    }
+   ]
+  },
+  "climate": {
+   "label": "Energy, climate & mobility",
+   "roles": [
+    "strategy",
+    "operations",
+    "business development",
+    "finance",
+    "product management"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "",
+   "companies": [
+    {
+     "name": "Lucid Motors",
+     "ats": "greenhouse",
+     "token": "lucidmotors"
+    },
+    {
+     "name": "Commonwealth Fusion Systems",
+     "ats": "lever",
+     "token": "cfsenergy"
+    },
+    {
+     "name": "Form Energy",
+     "ats": "ashby",
+     "token": "formenergy"
+    },
+    {
+     "name": "Redwood Materials",
+     "ats": "greenhouse",
+     "token": "redwoodmaterials"
+    },
+    {
+     "name": "Sunrun",
+     "ats": "workday",
+     "tenant": "sunrun",
+     "pod": "wd5",
+     "site": "Sunrun_Careers"
+    },
+    {
+     "name": "Watershed",
+     "ats": "greenhouse",
+     "token": "watershed"
+    },
+    {
+     "name": "Crusoe",
+     "ats": "ashby",
+     "token": "Crusoe"
+    },
+    {
+     "name": "Fervo Energy",
+     "ats": "greenhouse",
+     "token": "fervoenergy"
+    },
+    {
+     "name": "Electric Hydrogen",
+     "ats": "greenhouse",
+     "token": "eh2"
+    },
+    {
+     "name": "Twelve",
+     "ats": "ashby",
+     "token": "twelve"
+    },
+    {
+     "name": "Waymo",
+     "ats": "greenhouse",
+     "token": "waymo"
+    },
+    {
+     "name": "Zipline",
+     "ats": "greenhouse",
+     "token": "flyzipline"
+    },
+    {
+     "name": "Rivian",
+     "ats": "manual",
+     "url": "https://rivian.com/careers"
+    },
+    {
+     "name": "Enphase Energy",
+     "ats": "manual",
+     "url": "https://enphase.com/careers"
+    },
+    {
+     "name": "PG&E",
+     "ats": "manual",
+     "url": "https://pge.com/careers"
+    },
+    {
+     "name": "NextEra Energy",
+     "ats": "manual",
+     "url": "https://nexteraenergy.com/careers"
+    },
+    {
+     "name": "Coreshell",
+     "ats": "manual",
+     "url": "https://coreshell.com/careers"
+    },
+    {
+     "name": "Tesla",
+     "ats": "manual",
+     "url": "https://www.tesla.com/careers"
+    }
+   ]
+  },
+  "media": {
+   "label": "Media, gaming & entertainment",
+   "roles": [
+    "strategy",
+    "product management",
+    "marketing",
+    "business development",
+    "finance"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "hardware",
+    "firmware",
+    "scientist",
+    "phd",
+    "technician",
+    "developer",
+    "machine learning",
+    "data scientist",
+    "designer",
+    "recruiter",
+    "legal",
+    "counsel",
+    "accountant",
+    "tax",
+    "audit"
+   ],
+   "note": "",
+   "companies": [
+    {
+     "name": "Spotify",
+     "ats": "lever",
+     "token": "spotify"
+    },
+    {
+     "name": "Roblox",
+     "ats": "greenhouse",
+     "token": "roblox"
+    },
+    {
+     "name": "Epic Games",
+     "ats": "greenhouse",
+     "token": "epicgames"
+    },
+    {
+     "name": "Riot Games",
+     "ats": "greenhouse",
+     "token": "riotgames"
+    },
+    {
+     "name": "Reddit",
+     "ats": "greenhouse",
+     "token": "reddit"
+    },
+    {
+     "name": "Discord",
+     "ats": "greenhouse",
+     "token": "discord"
+    },
+    {
+     "name": "Peloton",
+     "ats": "greenhouse",
+     "token": "peloton"
+    },
+    {
+     "name": "Netflix",
+     "ats": "manual",
+     "url": "https://netflix.com/careers"
+    },
+    {
+     "name": "The Walt Disney Company",
+     "ats": "manual",
+     "url": "https://thewaltdisneycompany.com"
+    },
+    {
+     "name": "Electronic Arts",
+     "ats": "manual",
+     "url": "https://ea.com/careers"
+    },
+    {
+     "name": "Warner Bros. Discovery",
+     "ats": "manual",
+     "url": "https://wbd.com/careers"
+    },
+    {
+     "name": "NBCUniversal",
+     "ats": "manual",
+     "url": "https://nbcuniversal.com/careers"
+    },
+    {
+     "name": "TikTok",
+     "ats": "manual",
+     "url": "https://lifeattiktok.com/careers"
+    },
+    {
+     "name": "Snap",
+     "ats": "manual",
+     "url": "https://careers.snap.com"
+    }
+   ]
+  },
+  "impact": {
+   "label": "Social impact & public sector",
+   "roles": [
+    "strategy",
+    "operations",
+    "policy & government",
+    "finance",
+    "general management"
+   ],
+   "avoid": [
+    "engineer",
+    "engineering",
+    "software",
+    "developer",
+    "technician",
+    "scientist",
+    "phd",
+    "recruiter",
+    "legal",
+    "counsel",
+    "nurse",
+    "clinical",
+    "pharmacist",
+    "store",
+    "retail associate",
+    "warehouse"
+   ],
+   "note": "Foundations and nonprofits often hire through CMG or their own sites; check those too.",
+   "companies": [
+    {
+     "name": "Gates Foundation",
+     "ats": "workday",
+     "tenant": "gatesfoundation",
+     "pod": "wd1",
+     "site": "Gates"
+    },
+    {
+     "name": "Code for America",
+     "ats": "greenhouse",
+     "token": "codeforamerica"
+    },
+    {
+     "name": "Acumen",
+     "ats": "greenhouse",
+     "token": "acumen"
+    },
+    {
+     "name": "RMI",
+     "ats": "workday",
+     "tenant": "rockymountain",
+     "pod": "wd1",
+     "site": "RMI"
+    },
+    {
+     "name": "Teach For America",
+     "ats": "workday",
+     "tenant": "teachforamerica",
+     "pod": "wd1",
+     "site": "TFA_Careers"
+    },
+    {
+     "name": "World Bank Group",
+     "ats": "manual",
+     "url": "https://worldbank.org/careers"
+    },
+    {
+     "name": "Kiva",
+     "ats": "manual",
+     "url": "https://kiva.org/careers"
+    },
+    {
+     "name": "The Bridgespan Group",
+     "ats": "manual",
+     "url": "https://bridgespan.org/careers"
+    },
+    {
+     "name": "Clinton Health Access Initiative",
+     "ats": "manual",
+     "url": "https://clintonhealthaccess.org/jobs"
+    },
+    {
+     "name": "Echoing Green",
+     "ats": "manual",
+     "url": "https://echoinggreen.org"
+    }
+   ]
+  }
+ }
+}

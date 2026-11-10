@@ -1,0 +1,47 @@
+name: Internship Radar
+on:
+  schedule:
+    # Times are UTC. "0 14 * * 1-5" = weekdays 7 AM Pacific (6 AM in winter) / 10 AM Eastern.
+    - cron: "0 14 * * 1-5"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  scan:
+    # The shared template does not run itself; your copy does.
+    if: github.repository != 'BuildingBrian/mba-internship-radar'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the job boards and send the digest
+        run: |
+          if [ ! -f my-radar.json ]; then
+            echo "No my-radar.json yet. Add your profile (see README), then run this again."
+            exit 0
+          fi
+          python3 scripts/radar.py scan --send
+        env:
+          RADAR_EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
+          RADAR_SMTP_USER: ${{ secrets.RADAR_SMTP_USER }}
+          RADAR_SMTP_PASSWORD: ${{ secrets.RADAR_SMTP_PASSWORD }}
+          RADAR_SHEETS_URL: ${{ secrets.RADAR_SHEETS_URL }}
+          RADAR_IMAP_USER: ${{ secrets.RADAR_IMAP_USER }}
+          RADAR_IMAP_PASSWORD: ${{ secrets.RADAR_IMAP_PASSWORD }}
+          RADAR_WHATSAPP_PHONE: ${{ secrets.RADAR_WHATSAPP_PHONE }}
+          RADAR_CALLMEBOT_APIKEY: ${{ secrets.RADAR_CALLMEBOT_APIKEY }}
+          RADAR_SLACK_WEBHOOK: ${{ secrets.RADAR_SLACK_WEBHOOK }}
+          RADAR_DISCORD_WEBHOOK: ${{ secrets.RADAR_DISCORD_WEBHOOK }}
+          RADAR_NTFY_TOPIC: ${{ secrets.RADAR_NTFY_TOPIC }}
+          RADAR_TELEGRAM_BOT_TOKEN: ${{ secrets.RADAR_TELEGRAM_BOT_TOKEN }}
+          RADAR_TELEGRAM_CHAT_ID: ${{ secrets.RADAR_TELEGRAM_CHAT_ID }}
+      - name: Remember what was already sent
+        run: |
+          git config user.name "internship-radar"
+          git config user.email "internship-radar@users.noreply.github.com"
+          git add radar-state.json radar-latest.md 2>/dev/null || true
+          git commit -m "radar $(date -u +%F)" || echo "nothing new to save"
+          git push

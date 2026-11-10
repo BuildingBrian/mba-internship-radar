@@ -1,0 +1,168 @@
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-copy">
+      <div class="brand"><span class="scope" aria-hidden="true"></span><span class="eyebrow">For MBA classmates · free</span></div>
+      <h1>Internship Radar</h1>
+      <p class="lede">Pick your industries, roles and cities. Each morning the radar checks about 250 company job boards plus your LinkedIn, Handshake and CMG alerts, and sends you only the new postings that fit: by email, iMessage, or into a Google Sheet that doubles as your tracker.</p>
+      <div class="facts"><span class="fact">13 industries</span><span class="fact">173 boards checked daily</span><span class="fact">+ LinkedIn, Handshake &amp; CMG alerts</span><span class="fact">your own private copy</span></div>
+    </div>
+    <div class="digest" aria-label="Example morning alert">
+      <span class="tag">Example morning alert</span>
+      <div class="hd">Internship Radar for Alex · Tue Nov 10</div>
+      <div class="u">3 new · 14 open matches · 36 boards checked</div>
+      <div class="row"><span class="sc">[95]</span> <b>NVIDIA:</b> Product Management MBA Intern, Laptop, Summer 2027<br><span class="u">Santa Clara · posted Oct 30</span></div>
+      <div class="row"><span class="sc">[85]</span> <b>Adobe:</b> 2027 MBA Intern, Corporate Strategy<br><span class="u">San Francisco · posted Oct 6</span> <span class="warn">⚠ deadline Nov 21</span></div>
+      <div class="row"><span class="sc">[65]</span> <b>Pinterest:</b> Strategy &amp; Operations Intern 2027<br><span class="u">San Francisco · posted Nov 6</span></div>
+    </div>
+  </header>
+
+  <section aria-labelledby="b-h">
+    <div class="sec-head">
+      <span class="eyebrow">Start here</span>
+      <h2 id="b-h">Build your profile</h2>
+      <p>Your choices stay in this browser. When you're done, copy the profile: paste the short version into Claude, or use the file for the GitHub setup.</p>
+    </div>
+    <div class="builder">
+      <form class="panel" id="f" autocomplete="off">
+        <div class="grid2">
+          <label class="field">Your first name (optional)<input type="text" id="name" placeholder="Alex"></label>
+          <label class="field">Program<input type="text" id="program" value="Berkeley Haas FTMBA 2028"></label>
+        </div>
+        <fieldset>
+          <legend>What are you looking for?</legend>
+          <div class="btnrow">
+            <div class="seg" role="radiogroup" aria-label="Internship or full-time">
+              <label><input type="radio" name="kind" id="k-int" value="internship" checked><span>Internship</span></label>
+              <label><input type="radio" name="kind" id="k-ft" value="full-time"><span>Full-time</span></label>
+            </div>
+            <label class="field" style="flex:1;min-width:160px"><span class="sr" hidden>Term</span><input type="text" id="term" value="Summer 2027" aria-label="Term"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Industries <span class="hint">· pick up to three</span></legend>
+          <div class="chips" id="industries"></div>
+          <p class="hint" id="ind-note"></p>
+        </fieldset>
+        <fieldset>
+          <legend>Roles</legend>
+          <p class="hint">Picking an industry suggests its usual MBA roles. Change them freely.</p>
+          <div class="chips" id="roles"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Cities</legend>
+          <div class="chips" id="locs"></div>
+        </fieldset>
+        <label class="field">Dream companies, one per line, with the website if you know it
+          <textarea id="dream" placeholder="Stripe, stripe.com&#10;Patagonia, patagonia.com"></textarea>
+        </label>
+        <fieldset>
+          <legend>Will you need visa sponsorship?</legend>
+          <p class="hint">Only used to flag postings that say they don't sponsor.</p>
+          <div class="seg" role="radiogroup" aria-label="Visa sponsorship">
+            <label><input type="radio" name="visa" id="v-no" value="no" checked><span>No</span></label>
+            <label><input type="radio" name="visa" id="v-yes" value="yes"><span>Yes</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Also watch</legend>
+          <p class="hint">Read through the alert emails these sites send you. Nothing signs in to them.</p>
+          <div class="chips" id="sources"></div>
+        </fieldset>
+        <fieldset>
+          <legend>How should the radar reach you?</legend>
+          <div class="chips" id="channels"></div>
+          <p class="hint">Most people pick Email + Google Sheets. iMessage needs a Mac that's on.</p>
+          <div class="grid2">
+            <label class="field">Days<select id="days"><option value="weekdays">Weekdays</option><option value="daily">Every day</option></select></label>
+            <label class="field">Time (Pacific)<select id="time"><option value="6">6 AM</option><option value="7" selected>7 AM</option><option value="8">8 AM</option><option value="9">9 AM</option><option value="10">10 AM</option><option value="12">12 PM</option><option value="16">4 PM</option></select></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="out">
+        <div class="panel">
+          <div class="count"><div><b id="n-auto">0</b>boards checked for you</div><div><b id="n-hand">0</b>to check by hand</div><div><b id="n-roles">0</b>roles</div></div>
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" id="t-claude" aria-selected="true" aria-controls="o-claude">For Claude</button>
+            <button type="button" role="tab" id="t-file" aria-selected="false" aria-controls="o-file">my-radar.json (GitHub)</button>
+          </div>
+          <div id="o-claude" role="tabpanel" aria-labelledby="t-claude">
+            <pre id="claude-text"></pre>
+          </div>
+          <div id="o-file" role="tabpanel" aria-labelledby="t-file" hidden>
+            <pre id="file-text"></pre>
+            <p class="note" id="cron-note"></p>
+          </div>
+          <div class="btnrow"><button type="button" class="primary" id="copy">Copy</button><span class="ok" id="copied" aria-live="polite"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-h">
+    <div class="sec-head">
+      <span class="eyebrow">About 15 minutes</span>
+      <h2 id="s-h">Set it up</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Get your copy</h3>
+        <p>Everything is on GitHub: <a href="https://github.com/BuildingBrian/mba-internship-radar">github.com/BuildingBrian/mba-internship-radar</a>.</p>
+        <ol>
+          <li><b>Claude app:</b> download <code>internship-radar-skill.zip</code> from the repo's Releases, then Settings → Capabilities → Skills → Upload skill.</li>
+          <li><b>Claude Code:</b> download the repo, open the folder, say "Set up my internship radar".</li>
+          <li><b>Daily on GitHub:</b> click "Use this template", make it private, and add your <code>my-radar.json</code>.</li>
+        </ol>
+      </div>
+      <div class="step">
+        <h3>Paste your profile</h3>
+        <p>In Claude, say <b>"Set up my internship radar"</b> and paste the "For Claude" text above. Claude builds your company list and runs your first scan in about 30 seconds.</p>
+        <p>On GitHub, paste the "my-radar.json" tab as a new file instead.</p>
+      </div>
+      <div class="step">
+        <h3>Turn on alerts</h3>
+        <p>Pick a channel below. Passwords go into GitHub Secrets or a <code>radar.env</code> file on your Mac, never into a chat. Then run <code>test-alert</code> to see one arrive. The repo's ALERTS.md and SOURCES.md walk through each one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="c-h">
+    <div class="sec-head">
+      <span class="eyebrow">Alerts</span>
+      <h2 id="c-h">How you can hear about new postings</h2>
+      <p>Plain SMS isn't offered: US carriers now require business registration for automated texts. For a text-style alert, use iMessage or WhatsApp.</p>
+    </div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Channel</th><th>Feels like</th><th>Setup</th><th>Runs from</th></tr></thead>
+        <tbody>
+          <tr><td><b>Email</b></td><td>A short morning email</td><td><span class="pill">5 min</span> Gmail app password</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>iMessage</b></td><td>A text in Messages</td><td><span class="pill">2 min</span> your number</td><td>Mac only, Mac on</td></tr>
+          <tr><td><b>Google Sheets</b></td><td>Each new match lands as a row with a Status menu: your tracker</td><td><span class="pill">5 min</span> paste a script into your sheet</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>WhatsApp</b></td><td>A WhatsApp message</td><td><span class="pill warn">5 min</span> unofficial free service (CallMeBot)</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>Slack or Discord</b></td><td>A post in your own channel</td><td><span class="pill">3 min</span> incoming webhook</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>Phone push</b></td><td>A notification from the free ntfy app</td><td><span class="pill">2 min</span> no account</td><td>GitHub or Mac</td></tr>
+          <tr><td><b>Just in Claude</b></td><td>You ask "run my radar"</td><td><span class="pill">none</span></td><td>Claude</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="w-h">
+    <div class="sec-head">
+      <span class="eyebrow">Know the limits</span>
+      <h2 id="w-h">What it covers</h2>
+    </div>
+    <div class="cols">
+      <div class="col"><h3>Job boards</h3><p>173 company boards checked daily: tech, AI, robotics, defense, aerospace, fintech, climate and media, plus the big healthcare and consumer companies on Workday or Greenhouse. Add any company in one line.</p></div>
+      <div class="col"><h3>LinkedIn, Handshake, CMG</h3><p>Through the alert emails they already send you, the cmg tool's copy of CMG, or a paste into Claude. Nothing signs in to them, which keeps your accounts safe.</p></div>
+      <div class="col"><h3>Check by hand</h3><p>Most banks, McKinsey, BCG and Bain, and Google, Microsoft, Apple and Meta post on their own sites. The radar lists them every Monday. CMG stays your main source for on-campus recruiting.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Your profile and alert passwords stay with you: your Claude chat, your computer, or your private GitHub repo.</span>
+    <span>Code and guides: <a href="https://github.com/BuildingBrian/mba-internship-radar">github.com/BuildingBrian/mba-internship-radar</a> (MIT license: copy it, change it, share it).</span>
+    <span>Built by Brian Arévalo, Haas FTMBA '28. Questions and ideas go in the group chat.</span>
+  </footer>
+</div>

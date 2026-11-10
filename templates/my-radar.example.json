@@ -1,0 +1,62 @@
+{
+ "name": "Alex Rivera",
+ "program": "Berkeley Haas FTMBA 2028",
+ "looking_for": "internship",
+ "term": "Summer 2027",
+ "degree": "MBA",
+ "industries": [
+  "tech",
+  "fintech"
+ ],
+ "roles": [
+  "product management",
+  "strategy",
+  "operations"
+ ],
+ "avoid": [
+  "engineer",
+  "engineering",
+  "software",
+  "hardware",
+  "scientist",
+  "phd",
+  "technician",
+  "developer",
+  "designer",
+  "recruiter",
+  "legal",
+  "accountant",
+  "tax",
+  "audit",
+  "accounting",
+  "payroll"
+ ],
+ "locations": [
+  "San Francisco Bay Area",
+  "New York",
+  "Remote"
+ ],
+ "needs_sponsorship": false,
+ "min_score": 55,
+ "alerts": {
+  "channels": [
+   "email",
+   "sheets"
+  ],
+  "schedule": "weekdays at 7:00 AM",
+  "timezone": "America/Los_Angeles",
+  "send_when_quiet": false
+ },
+ "email_alerts": {
+  "enabled": false,
+  "from": [
+   "linkedin",
+   "handshake",
+   "cmg"
+  ],
+  "days": 3,
+  "extra_senders": []
+ },
+ "cmg_tool": false,
+ "companies": []
+}
